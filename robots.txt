@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://earnlix-africa.vercel.app/sitemap.xml
