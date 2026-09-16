@@ -123,6 +123,7 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 .about-text p{color:var(--m);line-height:1.8;margin-bottom:18px;font-size:.93rem}
 .about-text p:last-of-type{margin:0}
 .about-cards{display:flex;flex-direction:column;gap:14px;perspective:1000px}
+.about-visual{width:100%;border-radius:32px;display:block;margin-bottom:22px;box-shadow:0 20px 50px rgba(0,0,0,.4)}
 
 /* scroll-driven 3D entry */
 .acard{
@@ -184,6 +185,8 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 .mod-card p{font-size:.81rem;color:var(--m);line-height:1.65}
 .mod-tag{display:inline-block;margin-top:16px;padding:3px 10px;border-radius:50px;font-size:.67rem;font-weight:600;background:rgba(0,229,255,.07);color:rgba(0,229,255,.7);border:1px solid rgba(0,229,255,.12);font-family:'Inter',sans-serif;letter-spacing:.02em}
 .mod-span{grid-column:span 2}
+.mod-img{width:100%;height:150px;object-fit:cover;border-radius:20px;margin-bottom:18px;display:block;box-shadow:0 10px 26px rgba(0,0,0,.35)}
+.mod-span .mod-img{height:170px}
 
 /* Floating glow on hover */
 .mod-glow{
@@ -392,6 +395,7 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
         </a>
       </div>
       <div class="about-cards" style="perspective:1000px">
+        <img src="illus-globe.png" alt="Réseau digital panafricain connecté" class="about-visual sr" loading="lazy">
         <div class="glass acard d1">
           <div class="acard-icon ic-c"><svg><use href="#ico-book"/></svg></div>
           <div class="acard-body"><h3>Formation Pratique</h3><p>Guides pas-à-pas et tutoriels applicables immédiatement. Zéro théorie inutile.</p></div>
@@ -455,11 +459,11 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
       <p style="margin-top:12px">Pensés pour l'Afrique, adaptés à ton niveau, orientés vers la pratique immédiate.</p>
     </div>
     <div class="mod-grid" id="mod-grid">
-      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line ml-c"></div><h3>Trading Forex & Crypto</h3><p>Initiation aux marchés financiers, gestion du risque et stratégies pour débutants et intermédiaires.</p><span class="mod-tag">Débutant → Avancé</span></div></div>
-      <div class="glass mod-card d2"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line ml-g"></div><h3>Importation Chine & E-commerce</h3><p>Achète via Alibaba au prix d'usine et revends en Afrique avec une marge confortable.</p><span class="mod-tag">Business réel</span></div></div>
-      <div class="glass mod-card d3"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line ml-v"></div><h3>IA & Productivité</h3><p>ChatGPT, Midjourney, automatisation. Multiplie ta productivité et tes revenus grâce aux outils IA.</p><span class="mod-tag">Futur du travail</span></div></div>
-      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line ml-c"></div><h3>Marketing TikTok & YouTube</h3><p>Crée du contenu viral, développe une audience et monétise ta visibilité sur les plateformes vidéo.</p><span class="mod-tag">Visibilité & Revenus</span></div></div>
-      <div class="glass mod-card mod-span d2"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line" style="background:linear-gradient(90deg,var(--c),var(--g))"></div><h3>Marketing d'Affiliation Earnlix</h3><p>Le cœur de la communauté. Maîtrise le parrainage Earnlix, génère des commissions récurrentes et construis une rente digitale durable depuis l'Afrique.</p><span class="mod-tag">Commissions récurrentes</span></div></div>
+      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-trading.png" alt="Illustration trading Forex et Crypto" class="mod-img" loading="lazy"><div class="mod-line ml-c"></div><h3>Trading Forex & Crypto</h3><p>Initiation aux marchés financiers, gestion du risque et stratégies pour débutants et intermédiaires.</p><span class="mod-tag">Débutant → Avancé</span></div></div>
+      <div class="glass mod-card d2"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-ecommerce.png" alt="Illustration importation et e-commerce" class="mod-img" loading="lazy"><div class="mod-line ml-g"></div><h3>Importation Chine & E-commerce</h3><p>Achète via Alibaba au prix d'usine et revends en Afrique avec une marge confortable.</p><span class="mod-tag">Business réel</span></div></div>
+      <div class="glass mod-card d3"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-ai.png" alt="Illustration intelligence artificielle et productivité" class="mod-img" loading="lazy"><div class="mod-line ml-v"></div><h3>IA & Productivité</h3><p>ChatGPT, Midjourney, automatisation. Multiplie ta productivité et tes revenus grâce aux outils IA.</p><span class="mod-tag">Futur du travail</span></div></div>
+      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-video.png" alt="Illustration marketing vidéo TikTok et YouTube" class="mod-img" loading="lazy"><div class="mod-line ml-c"></div><h3>Marketing TikTok & YouTube</h3><p>Crée du contenu viral, développe une audience et monétise ta visibilité sur les plateformes vidéo.</p><span class="mod-tag">Visibilité & Revenus</span></div></div>
+      <div class="glass mod-card mod-span d2"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-affiliate.png" alt="Illustration réseau d'affiliation Earnlix" class="mod-img" loading="lazy"><div class="mod-line" style="background:linear-gradient(90deg,var(--c),var(--g))"></div><h3>Marketing d'Affiliation Earnlix</h3><p>Le cœur de la communauté. Maîtrise le parrainage Earnlix, génère des commissions récurrentes et construis une rente digitale durable depuis l'Afrique.</p><span class="mod-tag">Commissions récurrentes</span></div></div>
     </div>
   </div>
 </section>
@@ -847,10 +851,11 @@ document.querySelectorAll('.mod-card').forEach(card=>{
    7. SCROLL-DRIVEN PARALLAX (modules + services)
 ============================================================ */
 window.addEventListener('scroll',()=>{
-  const sy=window.scrollY;
-  /* subtle Y-shift on cards */
+  /* subtle Y-shift on cards, bounded relative to viewport position */
   document.querySelectorAll('.mod-card.on').forEach((c,i)=>{
-    const offset=sy*.012*(i%2===0?1:-1);
+    const r=c.getBoundingClientRect();
+    const centerDelta=(r.top+r.height/2)-innerHeight/2;
+    const offset=Math.max(-10,Math.min(10,centerDelta*.02))*(i%2===0?1:-1);
     c.style.transform=`translateY(${offset}px)`;
   });
 },{passive:true});
