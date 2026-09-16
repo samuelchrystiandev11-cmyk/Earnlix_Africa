@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Earnlix Africa — Maîtrise le Digital & Génère des Revenus</title>
+<meta name="description" content="La première communauté africaine dédiée au marketing digital, à l'IA, au trading et à l'e-commerce via Earnlix Digital.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#07080D;color:#D4D8E8;overflow-x:hidden;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+:root{--c:#00E5FF;--g:#00FF87;--v:#7C3AED;--bg:#07080D;--bg2:#0B0D16;--s:rgba(255,255,255,0.04);--b:rgba(255,255,255,0.08);--t:#D4D8E8;--m:#6B7A99;--r:14px}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(0,229,255,0.4);border-radius:3px}
+
+/* LAYOUT */
+.wrap{width:100%;max-width:1160px;margin:0 auto;padding:0 28px}
+.sec{padding:120px 0}
+.sec-sm{padding:80px 0}
+
+/* TYPE */
+h1,h2,h3{font-family:'Syne',sans-serif;line-height:1.1;font-weight:800;letter-spacing:-0.02em}
+h1{font-size:clamp(2.6rem,6vw,4.4rem)}
+h2{font-size:clamp(1.9rem,4vw,3rem)}
+h3{font-size:1rem;font-weight:700;letter-spacing:0}
+.eyebrow{display:inline-block;font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--c);margin-bottom:16px;opacity:.85}
+.grad{background:linear-gradient(110deg,var(--c),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.grad-v{background:linear-gradient(110deg,var(--v),var(--c));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.glass{background:var(--s);border:1px solid var(--b);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:var(--r)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:50px;font-family:'Inter',sans-serif;font-weight:600;font-size:.85rem;cursor:pointer;border:none;transition:transform .18s,box-shadow .18s;white-space:nowrap}
+.btn:hover{transform:translateY(-2px)}
+.btn:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.btn svg{width:16px;height:16px;flex-shrink:0}
+.btn-p{background:linear-gradient(135deg,var(--c),var(--g));color:#06070C;box-shadow:0 0 30px rgba(0,229,255,.3)}
+.btn-p:hover{box-shadow:0 0 44px rgba(0,229,255,.5)}
+.btn-o{background:transparent;color:var(--t);border:1px solid rgba(255,255,255,.14)}
+.btn-o:hover{border-color:rgba(0,229,255,.4);color:var(--c)}
+@keyframes pc{0%{box-shadow:0 0 0 0 rgba(0,229,255,.5)}70%{box-shadow:0 0 0 12px rgba(0,229,255,0)}100%{box-shadow:0 0 0 0 rgba(0,229,255,0)}}
+.pulse{animation:pc 2.2s ease-out infinite}
+@keyframes pw{0%{box-shadow:0 0 0 0 rgba(37,211,102,.55)}70%{box-shadow:0 0 0 14px rgba(37,211,102,0)}100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}}
+.pulse-w{animation:pw 2.2s ease-out infinite}
+
+/* NAVBAR */
+#nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+#nav.on{background:rgba(7,8,13,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-color:var(--b)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-logo img{height:36px;width:auto;object-fit:contain}
+.nav-brand{display:flex;flex-direction:column;line-height:1.2}
+.nav-title{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;color:#fff}
+.nav-sub{font-size:.58rem;color:var(--m);letter-spacing:.04em}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{font-size:.8rem;font-weight:500;color:var(--m);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{display:flex;align-items:center}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
+.burger span{display:block;width:22px;height:1.5px;background:var(--t);border-radius:2px;transition:transform .3s,opacity .3s}
+.burger.on span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.on span:nth-child(2){opacity:0}
+.burger.on span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+.mob-menu{position:fixed;top:68px;left:0;right:0;background:rgba(7,8,13,.97);backdrop-filter:blur(24px);border-bottom:1px solid var(--b);padding:24px 28px;z-index:999;display:flex;flex-direction:column;gap:4px;transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .28s,opacity .28s}
+.mob-menu.on{transform:none;opacity:1;pointer-events:all}
+.mob-menu a{font-size:.95rem;font-weight:500;color:var(--m);padding:12px 0;border-bottom:1px solid var(--b);transition:color .2s}
+.mob-menu a:last-child{border:none}
+.mob-menu a:hover{color:var(--c)}
+
+/* ===== HERO ===== */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding-top:68px}
+.hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 80% at 50% 30%,rgba(0,0,0,.8),transparent);z-index:0;pointer-events:none}
+.hero-layout{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center;min-height:calc(100vh - 68px);padding:80px 0 60px;position:relative;z-index:2}
+.hero-left{position:relative;z-index:2;max-width:580px}
+.hero-right{position:relative;display:flex;align-items:center;justify-content:center;height:520px}
+#hero-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+@media(max-width:900px){
+  .hero-layout{grid-template-columns:1fr;padding:60px 0 40px}
+  .hero-right{height:300px;margin-top:20px}
+}
+.live-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:50px;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.18);font-size:.73rem;font-weight:500;color:var(--c);margin-bottom:28px;font-family:'Inter',sans-serif}
+.live-dot{width:6px;height:6px;background:var(--g);border-radius:50%;animation:blink 1.8s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.1}}
+
+/* TYPEWRITER */
+.hero-title{margin-bottom:22px;color:#fff;min-height:3em}
+.cursor{display:inline-block;width:3px;height:.85em;background:var(--c);margin-left:4px;vertical-align:middle;animation:cur .9s step-end infinite}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
+
+.hero-sub{font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--m);max-width:540px;margin-bottom:40px;line-height:1.75;opacity:0;transform:translateY(18px);transition:opacity .75s .5s cubic-bezier(.22,1,.36,1),transform .75s .5s cubic-bezier(.22,1,.36,1)}
+.hero-sub.show{opacity:1;transform:none}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px;opacity:0;transform:translateY(16px);transition:opacity .75s .7s cubic-bezier(.22,1,.36,1),transform .75s .7s cubic-bezier(.22,1,.36,1)}
+.hero-btns.show{opacity:1;transform:none}
+
+/* STATS */
+.stats{display:flex;gap:0;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,.025);backdrop-filter:blur(12px);width:fit-content;opacity:0;transform:translateY(14px);transition:opacity .75s .9s cubic-bezier(.22,1,.36,1),transform .75s .9s cubic-bezier(.22,1,.36,1)}
+.stats.show{opacity:1;transform:none}
+.stat{padding:20px 30px;text-align:center;border-right:1px solid var(--b)}
+.stat:last-child{border:none}
+.stat-n{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;line-height:1;margin-bottom:4px}
+.stat-l{font-size:.68rem;color:var(--m);letter-spacing:.03em}
+
+/* SCROLL INDICATOR */
+.scroll-hint{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--m);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;opacity:.6}
+.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--c),transparent);animation:scrollln 1.6s ease-in-out infinite}
+@keyframes scrollln{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ===== DIVIDER ===== */
+.div{height:1px;background:linear-gradient(90deg,transparent,rgba(0,229,255,.18),transparent);border:none;margin:0}
+
+/* ===== ABOUT — 3D CARDS ===== */
+#about{background:var(--bg2);position:relative;overflow:hidden}
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;margin-top:64px}
+.about-text p{color:var(--m);line-height:1.8;margin-bottom:18px;font-size:.93rem}
+.about-text p:last-of-type{margin:0}
+.about-cards{display:flex;flex-direction:column;gap:14px;perspective:1000px}
+
+/* scroll-driven 3D entry */
+.acard{
+  padding:24px 26px;display:flex;gap:16px;align-items:flex-start;
+  transform:rotateX(40deg) translateY(40px);opacity:0;
+  transition:transform .7s cubic-bezier(.22,1,.36,1),opacity .7s cubic-bezier(.22,1,.36,1),border-color .2s;
+  transform-origin:top center;
+}
+.acard.on{transform:rotateX(0deg) translateY(0);opacity:1}
+.acard.d1{transition-delay:.1s}.acard.d2{transition-delay:.2s}.acard.d3{transition-delay:.32s}
+.acard:hover{border-color:rgba(0,229,255,.22);transform:rotateX(-2deg) scale(1.01)}
+.acard-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.acard-icon svg{width:17px;height:17px}
+.ic-c{background:rgba(0,229,255,.1);color:var(--c)}
+.ic-g{background:rgba(0,255,135,.1);color:var(--g)}
+.ic-v{background:rgba(124,58,237,.1);color:#A78BFA}
+.acard-body h3{font-size:.9rem;margin-bottom:4px;font-family:'Inter',sans-serif;font-weight:600}
+.acard-body p{font-size:.82rem;color:var(--m);line-height:1.6}
+
+/* scroll reveal generic */
+.sr{opacity:0;transform:translateY(36px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+.sr.on{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* ===== SERVICES — PARALLAX TIMELINE ===== */
+#services{position:relative;overflow:hidden}
+.srv-track{position:relative;margin-top:64px;padding-left:24px}
+.srv-track::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--c),var(--g),var(--v));opacity:.25}
+.srv-item{
+  position:relative;padding:0 0 52px 40px;
+  opacity:0;transform:translateX(-30px);
+  transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1);
+}
+.srv-item.on{opacity:1;transform:none}
+.srv-item::before{content:'';position:absolute;left:-5px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--c);box-shadow:0 0 12px var(--c);transition:transform .3s}
+.srv-item:nth-child(2)::before{background:var(--g);box-shadow:0 0 12px var(--g)}
+.srv-item:nth-child(3)::before{background:#A78BFA;box-shadow:0 0 12px #A78BFA}
+.srv-item:nth-child(4)::before{background:var(--c);box-shadow:0 0 12px var(--c)}
+.srv-item:hover::before{transform:scale(1.6)}
+.srv-num{font-size:.65rem;font-weight:700;letter-spacing:.12em;color:var(--m);text-transform:uppercase;margin-bottom:10px}
+.srv-item h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:8px}
+.srv-item p{font-size:.87rem;color:var(--m);line-height:1.7;max-width:540px}
+
+/* ===== MODULES — TILT 3D ===== */
+#modules{background:var(--bg2);position:relative;overflow:hidden}
+.mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:60px}
+.mod-card{
+  padding:28px 24px;cursor:default;
+  transform-style:preserve-3d;perspective:800px;
+  transition:border-color .2s;
+  opacity:0;transform:translateY(32px) scale(.96);
+  transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1),border-color .2s;
+}
+.mod-card.on{opacity:1;transform:translateY(0) scale(1)}
+.mod-card-inner{transform-style:preserve-3d;transition:transform .12s ease-out;will-change:transform}
+.mod-line{width:26px;height:2px;border-radius:2px;margin-bottom:18px}
+.ml-c{background:var(--c)}.ml-g{background:var(--g)}.ml-v{background:#A78BFA}
+.mod-card h3{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:#fff;margin-bottom:8px}
+.mod-card p{font-size:.81rem;color:var(--m);line-height:1.65}
+.mod-tag{display:inline-block;margin-top:16px;padding:3px 10px;border-radius:50px;font-size:.67rem;font-weight:600;background:rgba(0,229,255,.07);color:rgba(0,229,255,.7);border:1px solid rgba(0,229,255,.12);font-family:'Inter',sans-serif;letter-spacing:.02em}
+.mod-span{grid-column:span 2}
+
+/* Floating glow on hover */
+.mod-glow{
+  position:absolute;width:200px;height:200px;border-radius:50%;
+  background:radial-gradient(circle,rgba(0,229,255,.12),transparent 70%);
+  pointer-events:none;transform:translate(-50%,-50%);
+  opacity:0;transition:opacity .3s;
+}
+.mod-card:hover .mod-glow{opacity:1}
+.mod-card{position:relative;overflow:hidden}
+
+/* ===== COMMUNITY — PARTICLE CANVAS ===== */
+#community{position:relative;overflow:hidden}
+#net-canvas{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.5}
+.community-inner{position:relative;z-index:1}
+.com-list{display:flex;flex-direction:column;gap:12px;margin-top:52px;max-width:680px;margin-left:auto;margin-right:auto}
+.com-item{display:flex;align-items:center;gap:20px;padding:20px 24px;border-radius:var(--r);border:1px solid var(--b);text-decoration:none;color:var(--t);transition:transform .2s,border-color .2s,background .2s;font-family:'Inter',sans-serif;opacity:0;transform:translateY(24px) scale(.97)}
+.com-item.on{opacity:1;transform:none}
+.com-item:hover{transform:translateX(6px) scale(1.01)}
+.com-item:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.com-logo{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.com-logo svg{width:20px;height:20px}
+.com-text{flex:1}
+.com-name{font-weight:600;font-size:.93rem;color:#fff}
+.com-desc{font-size:.76rem;color:var(--m);margin-top:2px}
+.com-arr{color:var(--m);transition:transform .2s,color .2s}
+.com-arr svg{width:17px;height:17px}
+.com-item:hover .com-arr{transform:translateX(5px);color:var(--c)}
+.ci-wa{background:rgba(37,211,102,.05)}.ci-wa:hover{border-color:rgba(37,211,102,.35);background:rgba(37,211,102,.07)}
+.ci-wa .com-logo{background:rgba(37,211,102,.12);color:#25D366}
+.ci-tt{background:rgba(105,201,208,.04)}.ci-tt:hover{border-color:rgba(105,201,208,.3);background:rgba(105,201,208,.06)}
+.ci-tt .com-logo{background:rgba(0,0,0,.5);color:#69C9D0}
+.ci-fb{background:rgba(24,119,242,.04)}.ci-fb:hover{border-color:rgba(24,119,242,.3);background:rgba(24,119,242,.06)}
+.ci-fb .com-logo{background:rgba(24,119,242,.12);color:#1877F2}
+
+/* ===== FAQ ===== */
+#faq{background:var(--bg2)}
+.faq-wrap{max-width:780px;margin:48px auto 0;display:flex;flex-direction:column;gap:10px}
+.faq-card{border:1px solid var(--b);border-radius:var(--r);overflow:hidden;transition:border-color .25s}
+.faq-card.on-faq{border-color:rgba(0,229,255,.22)}
+.faq-btn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 24px;background:var(--s);border:none;cursor:pointer;text-align:left;font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;color:var(--t);transition:background .2s}
+.faq-btn:hover{background:rgba(255,255,255,.05)}
+.faq-btn:focus-visible{outline:2px solid var(--c);outline-offset:-2px}
+.faq-ico{width:26px;height:26px;border-radius:7px;background:rgba(0,229,255,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s,background .2s;color:var(--c)}
+.faq-ico svg{width:14px;height:14px}
+.faq-card.on-faq .faq-ico{transform:rotate(180deg);background:rgba(0,229,255,.16)}
+.faq-body{max-height:0;overflow:hidden;transition:max-height .38s ease}
+.faq-card.on-faq .faq-body{max-height:220px}
+.faq-inner{padding:4px 24px 22px;font-size:.87rem;color:var(--m);line-height:1.8}
+
+/* ===== FOOTER ===== */
+footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
+.ft-top{display:flex;align-items:flex-start;justify-content:space-between;gap:36px;flex-wrap:wrap;margin-bottom:40px}
+.ft-logo{display:flex;align-items:center;gap:10px}
+.ft-logo img{height:34px;width:auto;object-fit:contain}
+.ft-brand{display:flex;flex-direction:column}
+.ft-name{font-family:'Syne',sans-serif;font-size:.88rem;font-weight:800;color:#fff}
+.ft-powered{font-size:.58rem;color:var(--m);letter-spacing:.04em}
+.ft-nav{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+.ft-nav a{font-size:.78rem;color:var(--m);transition:color .2s}.ft-nav a:hover{color:var(--c)}
+.ft-icons{display:flex;gap:10px}
+.ft-ico{width:36px;height:36px;border-radius:9px;border:1px solid var(--b);display:flex;align-items:center;justify-content:center;background:var(--s);transition:border-color .2s,background .2s,color .2s;color:var(--m)}
+.ft-ico svg{width:15px;height:15px}
+.ft-ico:hover{border-color:rgba(0,229,255,.35);background:rgba(0,229,255,.06);color:var(--c)}
+.ft-ico:focus-visible{outline:2px solid var(--c);outline-offset:3px}
+.ft-bottom{border-top:1px solid var(--b);padding-top:22px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.ft-copy{font-size:.76rem;color:var(--m)}
+.ft-disc{font-size:.7rem;color:rgba(107,122,153,.45)}
+
+/* FLOAT WA */
+#float-wa{position:fixed;bottom:26px;right:26px;z-index:9999;width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#25D366,#128C7E);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 22px rgba(37,211,102,.4);transition:transform .2s;color:#fff}
+#float-wa:hover{transform:scale(1.1)}
+#float-wa:focus-visible{outline:2px solid #25D366;outline-offset:3px}
+#float-wa svg{width:23px;height:23px}
+
+/* SH */
+.sh{max-width:580px}.sh.c{max-width:580px;margin-left:auto;margin-right:auto;text-align:center}.sh h2{margin-bottom:12px;color:#fff}.sh p{color:var(--m);font-size:.93rem;line-height:1.75}
+
+/* RESPONSIVE */
+@media(max-width:920px){.about-layout{grid-template-columns:1fr;gap:48px}.mod-grid{grid-template-columns:repeat(2,1fr)}.mod-span{grid-column:span 2}}
+@media(max-width:768px){.nav-links,.nav-cta{display:none}.burger{display:flex}.sec{padding:80px 0}.stats{width:100%}.stat{flex:1;padding:16px 12px}.stat-n{font-size:1.3rem}}
+@media(max-width:560px){.mod-grid{grid-template-columns:1fr}.mod-span{grid-column:span 1}.hero-btns{flex-direction:column}.btn{width:100%;justify-content:center}.ft-top{flex-direction:column;gap:20px}.ft-bottom{flex-direction:column;text-align:center}}
+</style>
+</head>
+<body>
+
+<!-- SVG DEFS -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="ico-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path fill="currentColor" d="M12.004 2C6.479 2 2.004 6.476 2.004 12c0 1.916.518 3.711 1.42 5.259L2 22l4.884-1.388A9.943 9.943 0 0012.004 22C17.529 22 22 17.524 22 12S17.529 2 12.004 2zm0 1.8c4.525 0 8.196 3.672 8.196 8.2s-3.671 8.2-8.196 8.2a8.162 8.162 0 01-4.19-1.156l-.3-.178-3.107.882.84-3.023-.197-.312A8.163 8.163 0 013.804 12c0-4.528 3.672-8.2 8.2-8.2z"/></symbol>
+    <symbol id="ico-tt" viewBox="0 0 24 24"><path fill="currentColor" d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.88a8.2 8.2 0 004.79 1.53V6.96a4.85 4.85 0 01-1.02-.27z"/></symbol>
+    <symbol id="ico-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+    <symbol id="ico-arr" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="ico-chev" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></symbol>
+    <symbol id="ico-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 004 22h16V2H6.5A2.5 2.5 0 004 4.5v15z"/></symbol>
+    <symbol id="ico-users" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></symbol>
+    <symbol id="ico-trend" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M23 6l-9.5 9.5-5-5L1 18M17 6h6v6"/></symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav id="nav" role="navigation" aria-label="Navigation principale">
+  <div class="wrap">
+    <div class="nav-in">
+      <a href="#hero" class="nav-logo" aria-label="Earnlix Africa">
+        <img src="95217.png" alt="Earnlix Digital" onerror="this.style.display='none'">
+        <div class="nav-brand"><span class="nav-title">Earnlix Africa</span><span class="nav-sub">Powered by Earnlix Digital</span></div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">À Propos</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#modules">Formations</a></li>
+        <li><a href="#community">Communauté</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-p pulse">
+          <svg><use href="#ico-arr"/></svg> S'inscrire
+        </a>
+      </div>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="mob-menu" id="mob-menu">
+  <a href="#about" onclick="cm()">À Propos</a>
+  <a href="#services" onclick="cm()">Services</a>
+  <a href="#modules" onclick="cm()">Formations</a>
+  <a href="#community" onclick="cm()">Communauté</a>
+  <a href="#faq" onclick="cm()">FAQ</a>
+  <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" onclick="cm()" style="color:var(--c);font-weight:600;border:none;margin-top:8px">S'inscrire sur Earnlix →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero" aria-labelledby="h-title">
+  <div class="hero-grid-lines"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="hero-layout">
+      <div class="hero-left">
+        <div class="live-badge"><span class="live-dot"></span>Communauté Africaine · +1 000 membres actifs</div>
+        <h1 class="hero-title" id="h-title"><span id="typewriter"></span><span class="cursor"></span></h1>
+        <p class="hero-sub">La première communauté africaine dédiée au marketing d'affiliation Earnlix, à l'IA, au Trading et au E-commerce. Passe de la théorie à l'action.</p>
+        <div class="hero-btns">
+          <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" class="btn btn-p pulse" aria-label="Rejoindre le groupe WhatsApp">
+            <svg><use href="#ico-wa"/></svg> Rejoindre le Groupe WhatsApp
+          </a>
+          <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-o" aria-label="S'inscrire sur Earnlix">
+            S'inscrire sur Earnlix <svg><use href="#ico-arr"/></svg>
+          </a>
+        </div>
+        <div class="stats" role="list">
+          <div class="stat" role="listitem"><div class="stat-n grad">+1 000</div><div class="stat-l">Membres actifs</div></div>
+          <div class="stat" role="listitem"><div class="stat-n" style="color:var(--g)">98%</div><div class="stat-l">Satisfaction</div></div>
+          <div class="stat" role="listitem"><div class="stat-n grad-v">100%</div><div class="stat-l">Pratique</div></div>
+        </div>
+      </div>
+      <div class="hero-right">
+        <canvas id="hero-canvas"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div></div>
+</section>
+
+<hr class="div">
+
+<!-- ABOUT -->
+<section id="about" class="sec" aria-labelledby="ab-title">
+  <div class="wrap">
+    <div class="about-layout">
+      <div class="about-text sr">
+        <span class="eyebrow">Mission</span>
+        <h2 id="ab-title">Earnlix Africa<br><span class="grad">& Earnlix Digital</span></h2>
+        <p style="margin-top:18px">Notre mission est de rendre le business digital concret et accessible à tout africain motivé. Pas de promesses vagues — des méthodes testées sur le terrain.</p>
+        <p>Qu'il s'agisse de générer un revenu complémentaire ou de se reconvertir entièrement dans le digital, nous accompagnons chaque membre de l'idée jusqu'aux premiers résultats.</p>
+        <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-p" style="margin-top:28px;width:fit-content">
+          <svg><use href="#ico-arr"/></svg> S'inscrire gratuitement
+        </a>
+      </div>
+      <div class="about-cards" style="perspective:1000px">
+        <div class="glass acard d1">
+          <div class="acard-icon ic-c"><svg><use href="#ico-book"/></svg></div>
+          <div class="acard-body"><h3>Formation Pratique</h3><p>Guides pas-à-pas et tutoriels applicables immédiatement. Zéro théorie inutile.</p></div>
+        </div>
+        <div class="glass acard d2">
+          <div class="acard-icon ic-g"><svg><use href="#ico-users"/></svg></div>
+          <div class="acard-body"><h3>Entraide & Mentorat</h3><p>Suivi quotidien avec des membres expérimentés disponibles pour toutes tes questions.</p></div>
+        </div>
+        <div class="glass acard d3">
+          <div class="acard-icon ic-v"><svg><use href="#ico-trend"/></svg></div>
+          <div class="acard-body"><h3>Monétisation & Affiliation</h3><p>Commissions récurrentes via Earnlix Digital pour transformer ton réseau en revenus.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- SERVICES — TIMELINE -->
+<section id="services" class="sec" aria-labelledby="srv-title">
+  <div class="wrap">
+    <div class="sh sr">
+      <span class="eyebrow">Groupe WhatsApp</span>
+      <h2 id="srv-title">Ce que tu trouves<br><span class="grad">dans le groupe</span></h2>
+      <p style="margin-top:12px">Un espace structuré où l'information pratique circule chaque jour.</p>
+    </div>
+    <div class="srv-track">
+      <div class="srv-item d1">
+        <div class="srv-num">01</div>
+        <h3>Live Coaching & Sessions Q/R</h3>
+        <p>Des sessions en direct régulières pour débloquer tes situations et accélérer ta progression avec des experts disponibles en temps réel.</p>
+      </div>
+      <div class="srv-item d2">
+        <div class="srv-num">02</div>
+        <h3>Stratégies d'Affiliation prêtes à l'emploi</h3>
+        <p>Scripts de vente, visuels optimisés, messages types — tout ce qu'il faut pour promouvoir Earnlix efficacement dès le premier jour.</p>
+      </div>
+      <div class="srv-item d3">
+        <div class="srv-num">03</div>
+        <h3>Alertes & Opportunités en avant-première</h3>
+        <p>Sois informé en premier des nouvelles opportunités, promotions et tendances du digital avant la masse.</p>
+      </div>
+      <div class="srv-item d4">
+        <div class="srv-num">04</div>
+        <h3>Réseau d'Entraide</h3>
+        <p>Un vrai réseau de passionnés du web africain. Partage, collabore et grandis aux côtés de personnes qui comprennent tes ambitions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- MODULES — TILT 3D -->
+<section id="modules" class="sec" aria-labelledby="mod-title">
+  <div class="wrap">
+    <div class="sh sr">
+      <span class="eyebrow">Contenus & Formations</span>
+      <h2 id="mod-title">Nos modules<br><span class="grad">de formation</span></h2>
+      <p style="margin-top:12px">Pensés pour l'Afrique, adaptés à ton niveau, orientés vers la pratique immédiate.</p>
+    </div>
+    <div class="mod-grid" id="mod-grid">
+      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line ml-c"></div><h3>Trading Forex & Crypto</h3><p>Initiation aux marchés financiers, gestion du risque et stratégies pour débutants et intermédiaires.</p><span class="mod-tag">Débutant → Avancé</span></div></div>
+      <div class="glass mod-card d2"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line ml-g"></div><h3>Importation Chine & E-commerce</h3><p>Achète via Alibaba au prix d'usine et revends en Afrique avec une marge confortable.</p><span class="mod-tag">Business réel</span></div></div>
+      <div class="glass mod-card d3"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line ml-v"></div><h3>IA & Productivité</h3><p>ChatGPT, Midjourney, automatisation. Multiplie ta productivité et tes revenus grâce aux outils IA.</p><span class="mod-tag">Futur du travail</span></div></div>
+      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line ml-c"></div><h3>Marketing TikTok & YouTube</h3><p>Crée du contenu viral, développe une audience et monétise ta visibilité sur les plateformes vidéo.</p><span class="mod-tag">Visibilité & Revenus</span></div></div>
+      <div class="glass mod-card mod-span d2"><div class="mod-glow"></div><div class="mod-card-inner"><div class="mod-line" style="background:linear-gradient(90deg,var(--c),var(--g))"></div><h3>Marketing d'Affiliation Earnlix</h3><p>Le cœur de la communauté. Maîtrise le parrainage Earnlix, génère des commissions récurrentes et construis une rente digitale durable depuis l'Afrique.</p><span class="mod-tag">Commissions récurrentes</span></div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- COMMUNITY -->
+<section id="community" class="sec-sm" aria-labelledby="com-title">
+  <canvas id="net-canvas"></canvas>
+  <div class="wrap community-inner">
+    <div class="sh c sr">
+      <span class="eyebrow">Réseaux</span>
+      <h2 id="com-title">Rejoins-nous<br><span class="grad">partout</span></h2>
+      <p style="margin-top:12px">La communauté est active sur plusieurs plateformes. Reste connecté.</p>
+    </div>
+    <div class="com-list">
+      <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" class="com-item ci-wa d1" aria-label="Groupe WhatsApp VIP">
+        <div class="com-logo"><svg><use href="#ico-wa"/></svg></div>
+        <div class="com-text"><div class="com-name">Groupe WhatsApp VIP</div><div class="com-desc">+1 000 membres · Coaching quotidien · Stratégies exclusives</div></div>
+        <div class="com-arr"><svg><use href="#ico-arr"/></svg></div>
+      </a>
+      <a href="https://www.tiktok.com/@earnlix_africa_digital" target="_blank" rel="noopener" class="com-item ci-tt d2" aria-label="TikTok Earnlix Africa">
+        <div class="com-logo"><svg><use href="#ico-tt"/></svg></div>
+        <div class="com-text"><div class="com-name">TikTok — @earnlix_africa_digital</div><div class="com-desc">Astuces · Stratégies · Coulisses de la communauté</div></div>
+        <div class="com-arr"><svg><use href="#ico-arr"/></svg></div>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61594257608833" target="_blank" rel="noopener" class="com-item ci-fb d3" aria-label="Facebook Earnlix Africa">
+        <div class="com-logo"><svg><use href="#ico-fb"/></svg></div>
+        <div class="com-text"><div class="com-name">Facebook — Earnlix Africa Community</div><div class="com-desc">Actualités · Formations · Témoignages de membres</div></div>
+        <div class="com-arr"><svg><use href="#ico-arr"/></svg></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- FAQ -->
+<section id="faq" class="sec" aria-labelledby="faq-title">
+  <div class="wrap">
+    <div class="sh c sr">
+      <span class="eyebrow">FAQ</span>
+      <h2 id="faq-title">Questions<br><span class="grad">fréquentes</span></h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-card glass sr d1">
+        <button class="faq-btn" aria-expanded="false" aria-controls="fa1"><span>Comment rejoindre le groupe WhatsApp ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
+        <div class="faq-body" id="fa1"><div class="faq-inner">Clique sur l'un des boutons "Rejoindre le Groupe WhatsApp" présents sur cette page. Tu seras immédiatement redirigé vers notre groupe où tu accèderas aux ressources et au coaching quotidien.</div></div>
+      </div>
+      <div class="faq-card glass sr d2">
+        <button class="faq-btn" aria-expanded="false" aria-controls="fa2"><span>Faut-il payer pour s'inscrire sur Earnlix ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
+        <div class="faq-body" id="fa2"><div class="faq-inner">L'inscription sur Earnlix Digital est gratuite. Tu peux créer ton compte et commencer ton parcours affilié sans frais initiaux. Des offres premium existent pour aller plus loin, mais rien n'est obligatoire pour démarrer.</div></div>
+      </div>
+      <div class="faq-card glass sr d3">
+        <button class="faq-btn" aria-expanded="false" aria-controls="fa3"><span>Suis-je accompagné si je suis totalement débutant ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
+        <div class="faq-body" id="fa3"><div class="faq-inner">Absolument. Earnlix Africa Community est conçue pour les débutants. Nos contenus partent de zéro, notre équipe répond dans le groupe, et les sessions live sont faites pour ceux qui commencent dans le digital.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-logo">
+        <img src="95217.png" alt="Earnlix Digital" onerror="this.style.display='none'">
+        <div class="ft-brand"><span class="ft-name">Earnlix Africa</span><span class="ft-powered">Powered by Earnlix Digital</span></div>
+      </div>
+      <nav aria-label="Footer"><div class="ft-nav">
+        <a href="#hero">Accueil</a><a href="#about">À Propos</a><a href="#modules">Formations</a><a href="#faq">FAQ</a>
+        <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" style="color:var(--c)">S'inscrire</a>
+        <a href="#">Mentions légales</a>
+      </div></nav>
+      <div class="ft-icons" aria-label="Réseaux sociaux">
+        <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" class="ft-ico" aria-label="WhatsApp"><svg><use href="#ico-wa"/></svg></a>
+        <a href="https://www.tiktok.com/@earnlix_africa_digital" target="_blank" rel="noopener" class="ft-ico" aria-label="TikTok"><svg><use href="#ico-tt"/></svg></a>
+        <a href="https://www.facebook.com/profile.php?id=61594257608833" target="_blank" rel="noopener" class="ft-ico" aria-label="Facebook"><svg><use href="#ico-fb"/></svg></a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p class="ft-copy">© 2026 EARNLIX Africa × Earnlix Digital. Tous droits réservés.</p>
+      <p class="ft-disc">Les résultats varient selon l'engagement de chaque membre.</p>
+    </div>
+  </div>
+</footer>
+
+<a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" id="float-wa" class="pulse-w" aria-label="Rejoindre WhatsApp">
+  <svg><use href="#ico-wa"/></svg>
+</a>
+
+<script>
+/* ============================================================
+   1. NAVBAR
+============================================================ */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('on',scrollY>24),{passive:true});
+const brg=document.getElementById('burger'),mm=document.getElementById('mob-menu');
+brg.addEventListener('click',()=>{const o=brg.classList.toggle('on');mm.classList.toggle('on',o);brg.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''});
+function cm(){brg.classList.remove('on');mm.classList.remove('on');brg.setAttribute('aria-expanded','false');document.body.style.overflow=''}
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',cm));
+
+/* ============================================================
+   2. TYPEWRITER HERO
+============================================================ */
+const lines=['Maîtrise le Digital.\nGénère des Revenus.','Passe de la Théorie\nà l\'Action.','Rejoins la Communauté\nAfricaine #1.'];
+let li=0,ci=0,del=false;
+const tw=document.getElementById('typewriter');
+function type(){
+  const full=lines[li];
+  if(!del){
+    ci++;
+    tw.innerHTML=full.slice(0,ci).replace('\n','<br>');
+    if(ci===full.length){del=true;setTimeout(type,2200);return}
+    setTimeout(type,55);
+  } else {
+    if(ci>0){ci--;tw.innerHTML=full.slice(0,ci).replace('\n','<br>');setTimeout(type,28)}
+    else{del=false;li=(li+1)%lines.length;setTimeout(type,400)}
+  }
+}
+setTimeout(type,600);
+/* show sub/btns/stats */
+setTimeout(()=>{
+  document.querySelector('.hero-sub').classList.add('show');
+  document.querySelector('.hero-btns').classList.add('show');
+  document.querySelector('.stats').classList.add('show');
+},800);
+
+/* ============================================================
+   3. THREE.JS HERO — GLOBE PARTICULES
+============================================================ */
+(function(){
+  const canvas=document.getElementById('hero-canvas');
+  const W=()=>canvas.offsetWidth, H=()=>canvas.offsetHeight;
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setSize(W(),H());
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(60,W()/H(),.1,1000);
+  camera.position.z=2.6;
+
+  /* Globe points */
+  const N=2200;
+  const pos=new Float32Array(N*3);
+  const col=new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    /* Fibonacci sphere */
+    const phi=Math.acos(1-2*(i+.5)/N);
+    const theta=Math.PI*(1+Math.sqrt(5))*i;
+    pos[i*3]=Math.sin(phi)*Math.cos(theta);
+    pos[i*3+1]=Math.cos(phi);
+    pos[i*3+2]=Math.sin(phi)*Math.sin(theta);
+    /* colour: cyan → green gradient by latitude */
+    const t=.5+pos[i*3+1]*.5;
+    col[i*3]=t*.0+(1-t)*.0;
+    col[i*3+1]=t*1.0+(1-t)*.9;
+    col[i*3+2]=t*1.0+(1-t)*.5;
+  }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const mat=new THREE.PointsMaterial({size:.018,vertexColors:true,transparent:true,opacity:.7,sizeAttenuation:true});
+  const globe=new THREE.Points(geo,mat);
+  globe.position.set(0,0,0);
+  scene.add(globe);
+
+  /* Ring */
+  const rGeo=new THREE.TorusGeometry(1.18,.006,16,120);
+  const rMat=new THREE.MeshBasicMaterial({color:0x00E5FF,transparent:true,opacity:.22});
+  const ring=new THREE.Mesh(rGeo,rMat);
+  ring.rotation.x=.35;
+  ring.position.set(0,0,0);
+  scene.add(ring);
+
+  /* Outer ring */
+  const rGeo2=new THREE.TorusGeometry(1.32,.003,16,120);
+  const rMat2=new THREE.MeshBasicMaterial({color:0x00FF87,transparent:true,opacity:.13});
+  const ring2=new THREE.Mesh(rGeo2,rMat2);
+  ring2.rotation.x=-.55;ring2.rotation.z=.3;
+  ring2.position.set(0,0,0);
+  scene.add(ring2);
+
+  /* Floating small particles */
+  const fpN=90,fpPos=new Float32Array(fpN*3);
+  for(let i=0;i<fpN;i++){
+    fpPos[i*3]=(Math.random()-0.5)*4;
+    fpPos[i*3+1]=(Math.random()-0.5)*4;
+    fpPos[i*3+2]=(Math.random()-0.5)*2-1;
+  }
+  const fpGeo=new THREE.BufferGeometry();
+  fpGeo.setAttribute('position',new THREE.BufferAttribute(fpPos,3));
+  const fpMat=new THREE.PointsMaterial({size:.03,color:0x00E5FF,transparent:true,opacity:.35});
+  scene.add(new THREE.Points(fpGeo,fpMat));
+
+  /* Mouse parallax */
+  let mx=0,my=0;
+  window.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2},{passive:true});
+
+  /* Scroll opacity */
+  let scrollY3=0;
+  window.addEventListener('scroll',()=>{scrollY3=window.scrollY},{passive:true});
+
+  let t=0;
+  function animate(){
+    requestAnimationFrame(animate);
+    t+=.004;
+    globe.rotation.y=t;
+    ring.rotation.z=t*.4;
+    ring2.rotation.y=t*.25;
+    /* mouse parallax */
+    globe.position.x=mx*.1;
+    globe.position.y=-my*.07;
+    ring.position.x=mx*.1;
+    ring.position.y=-my*.07;
+    ring2.position.x=mx*.1;
+    ring2.position.y=-my*.07;
+    /* fade on scroll */
+    const fade=Math.max(0,1-scrollY3/500);
+    renderer.domElement.style.opacity=fade;
+    renderer.render(scene,camera);
+  }
+  animate();
+
+  window.addEventListener('resize',()=>{
+    renderer.setSize(W(),H());
+    camera.aspect=W()/H();
+    camera.updateProjectionMatrix();
+  },{passive:true});
+})();
+
+/* ============================================================
+   4. NETWORK CANVAS (community section)
+============================================================ */
+(function(){
+  const c=document.getElementById('net-canvas');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight}
+  resize();
+  window.addEventListener('resize',resize);
+
+  const N=55;
+  const pts=Array.from({length:N},()=>({
+    x:Math.random()*1e4,y:Math.random()*1e4,
+    vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,
+    r:Math.random()*1.5+.5
+  }));
+
+  function draw(){
+    requestAnimationFrame(draw);
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+    });
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<140){
+        ctx.beginPath();
+        ctx.strokeStyle=`rgba(0,229,255,${(1-d/140)*.15})`;
+        ctx.lineWidth=.6;
+        ctx.moveTo(pts[i].x,pts[i].y);
+        ctx.lineTo(pts[j].x,pts[j].y);
+        ctx.stroke();
+      }
+    }
+    pts.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,229,255,0.4)';
+      ctx.fill();
+    });
+  }
+  draw();
+})();
+
+/* ============================================================
+   5. SCROLL OBSERVER — révèle les éléments
+============================================================ */
+const observe=(sel,cls='on')=>{
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add(cls);io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll(sel).forEach(el=>io.observe(el));
+};
+observe('.sr');
+observe('.acard');
+observe('.srv-item');
+observe('.mod-card');
+observe('.com-item');
+
+/* ============================================================
+   6. TILT 3D — modules cards
+============================================================ */
+document.querySelectorAll('.mod-card').forEach(card=>{
+  const inner=card.querySelector('.mod-card-inner');
+  const glow=card.querySelector('.mod-glow');
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    inner.style.transform=`rotateY(${x*14}deg) rotateX(${-y*10}deg) translateZ(8px)`;
+    glow.style.left=`${e.clientX-r.left}px`;
+    glow.style.top=`${e.clientY-r.top}px`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    inner.style.transform='rotateY(0) rotateX(0) translateZ(0)';
+  });
+});
+
+/* ============================================================
+   7. SCROLL-DRIVEN PARALLAX (modules + services)
+============================================================ */
+window.addEventListener('scroll',()=>{
+  const sy=window.scrollY;
+  /* subtle Y-shift on cards */
+  document.querySelectorAll('.mod-card.on').forEach((c,i)=>{
+    const offset=sy*.012*(i%2===0?1:-1);
+    c.style.transform=`translateY(${offset}px)`;
+  });
+},{passive:true});
+
+/* ============================================================
+   8. FAQ
+============================================================ */
+document.querySelectorAll('.faq-card').forEach(c=>{
+  c.querySelector('.faq-btn').addEventListener('click',()=>{
+    const o=c.classList.contains('on-faq');
+    document.querySelectorAll('.faq-card').forEach(x=>{x.classList.remove('on-faq');x.querySelector('.faq-btn').setAttribute('aria-expanded','false')});
+    if(!o){c.classList.add('on-faq');c.querySelector('.faq-btn').setAttribute('aria-expanded','true')}
+  });
+});
+
+/* reduced motion */
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){
+  document.querySelectorAll('.pulse,.pulse-w,.scroll-hint').forEach(el=>el.style.animation='none');
+}
+</script>
+</body>
+</html>
