@@ -180,6 +180,59 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 .sr.on{opacity:1;transform:none}
 .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
 
+/* ===== HOW IT WORKS — STEPS ===== */
+#how{position:relative;overflow:hidden}
+.steps-grid{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:64px}
+.steps-grid::before{content:'';position:absolute;top:29px;left:calc(12.5% + 10px);right:calc(12.5% + 10px);height:1px;background:linear-gradient(90deg,var(--c),var(--g),#A78BFA,var(--c));opacity:.25;z-index:0}
+.step-card{
+  position:relative;z-index:1;padding:26px 22px;
+  opacity:0;transform:translateY(28px);
+  transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1),border-color .2s;
+}
+.step-card.on{opacity:1;transform:none}
+.step-card:hover{border-color:rgba(0,229,255,.22)}
+.step-num{
+  width:38px;height:38px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.95rem;color:#06070C;
+  background:linear-gradient(135deg,var(--c),var(--g));margin-bottom:20px;box-shadow:0 0 22px rgba(0,229,255,.3);
+}
+.step-card:nth-child(2) .step-num{background:linear-gradient(135deg,var(--g),#A78BFA)}
+.step-card:nth-child(3) .step-num{background:linear-gradient(135deg,#A78BFA,var(--c))}
+.step-card:nth-child(4) .step-num{background:linear-gradient(135deg,var(--c),var(--g))}
+.step-card h3{font-family:'Syne',sans-serif;font-size:.92rem;font-weight:700;color:#fff;margin-bottom:8px}
+.step-card p{font-size:.82rem;color:var(--m);line-height:1.65}
+@media(max-width:860px){.steps-grid{grid-template-columns:1fr 1fr}.steps-grid::before{display:none}}
+@media(max-width:560px){.steps-grid{grid-template-columns:1fr}}
+
+/* ===== FINAL CTA BANNER ===== */
+#final-cta{padding:100px 0}
+.cta-panel{
+  position:relative;overflow:hidden;text-align:center;padding:72px 32px;
+  background:
+    radial-gradient(120% 160% at 15% 15%, rgba(0,229,255,.14), rgba(0,229,255,0) 50%),
+    radial-gradient(120% 160% at 88% 90%, rgba(0,255,135,.12), rgba(0,255,135,0) 50%),
+    radial-gradient(90% 140% at 92% 10%, rgba(124,58,237,.14), rgba(124,58,237,0) 50%);
+  opacity:0;transform:translateY(28px);
+  transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);
+}
+.cta-panel.on{opacity:1;transform:none}
+.cta-panel h2{color:#fff;margin-bottom:16px}
+.cta-panel p{color:var(--m);font-size:.95rem;max-width:560px;margin:0 auto 36px;line-height:1.75}
+.cta-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:26px}
+.cta-note{font-size:.74rem;color:rgba(107,122,153,.7)}
+
+/* ===== BACK TO TOP ===== */
+#back-top{
+  position:fixed;bottom:26px;left:26px;z-index:9999;width:46px;height:46px;border-radius:50%;
+  background:var(--s);border:1px solid var(--b);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:center;justify-content:center;color:var(--t);cursor:pointer;
+  opacity:0;pointer-events:none;transform:translateY(10px);
+  transition:opacity .25s,transform .25s,border-color .2s,color .2s;
+}
+#back-top.show{opacity:1;pointer-events:all;transform:none}
+#back-top:hover{border-color:rgba(0,229,255,.4);color:var(--c)}
+#back-top svg{width:18px;height:18px}
+
 /* ===== SERVICES — PARALLAX TIMELINE ===== */
 #services{position:relative;overflow:hidden}
 .srv-track{position:relative;margin-top:64px;padding-left:24px}
@@ -353,6 +406,7 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
       </a>
       <ul class="nav-links">
         <li><a href="#about">À Propos</a></li>
+        <li><a href="#how">Étapes</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#modules">Formations</a></li>
         <li><a href="#testimonials">Témoignages</a></li>
@@ -372,6 +426,7 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
 </nav>
 <div class="mob-menu" id="mob-menu">
   <a href="#about" onclick="cm()">À Propos</a>
+  <a href="#how" onclick="cm()">Étapes</a>
   <a href="#services" onclick="cm()">Services</a>
   <a href="#modules" onclick="cm()">Formations</a>
   <a href="#testimonials" onclick="cm()">Témoignages</a>
@@ -440,6 +495,41 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
           <div class="acard-icon ic-v"><svg><use href="#ico-trend"/></svg></div>
           <div class="acard-body"><h3>Monétisation & Affiliation</h3><p>Commissions récurrentes via Earnlix Digital pour transformer ton réseau en revenus.</p></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- HOW IT WORKS -->
+<section id="how" class="sec" aria-labelledby="how-title">
+  <div class="wrap">
+    <div class="sh c sr">
+      <span class="eyebrow">Étapes</span>
+      <h2 id="how-title">Comment <span class="grad">ça marche</span></h2>
+      <p style="margin-top:12px">Quatre étapes simples pour passer de spectateur à acteur du digital.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="glass step-card d1">
+        <div class="step-num">01</div>
+        <h3>Rejoins le groupe WhatsApp</h3>
+        <p>Accès gratuit et immédiat à la communauté, au coaching quotidien et aux ressources.</p>
+      </div>
+      <div class="glass step-card d2">
+        <div class="step-num">02</div>
+        <h3>Inscris-toi sur Earnlix</h3>
+        <p>Crée ton compte Earnlix Digital gratuitement pour activer ton parcours d'affiliation.</p>
+      </div>
+      <div class="glass step-card d3">
+        <div class="step-num">03</div>
+        <h3>Suis les formations</h3>
+        <p>Trading, e-commerce, IA, marketing vidéo — apprends à ton rythme avec le mentorat du groupe.</p>
+      </div>
+      <div class="glass step-card d4">
+        <div class="step-num">04</div>
+        <h3>Génère tes revenus</h3>
+        <p>Applique ce que tu apprends, touche tes premières commissions et deviens mentor à ton tour.</p>
       </div>
     </div>
   </div>
@@ -629,6 +719,25 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
   </div>
 </section>
 
+<!-- FINAL CTA -->
+<section id="final-cta">
+  <div class="wrap">
+    <div class="glass cta-panel sr">
+      <h2>Prêt à passer à l'action ?</h2>
+      <p>Rejoins plus de 1 000 membres qui apprennent, échangent et génèrent leurs premiers revenus digitaux chaque semaine.</p>
+      <div class="cta-btns">
+        <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" class="btn btn-p pulse" aria-label="Rejoindre le groupe WhatsApp">
+          <svg><use href="#ico-wa"/></svg> Rejoindre le Groupe WhatsApp
+        </a>
+        <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-o" aria-label="S'inscrire sur Earnlix">
+          S'inscrire sur Earnlix <svg><use href="#ico-arr"/></svg>
+        </a>
+      </div>
+      <p class="cta-note">Inscription gratuite · Sans engagement · Accompagnement dès le premier jour</p>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer role="contentinfo">
   <div class="wrap">
@@ -638,7 +747,7 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
         <div class="ft-brand"><span class="ft-name">Earnlix Africa</span><span class="ft-powered">Powered by Earnlix Digital</span></div>
       </div>
       <nav aria-label="Footer"><div class="ft-nav">
-        <a href="#hero">Accueil</a><a href="#about">À Propos</a><a href="#modules">Formations</a><a href="#testimonials">Témoignages</a><a href="#faq">FAQ</a>
+        <a href="#hero">Accueil</a><a href="#about">À Propos</a><a href="#how">Étapes</a><a href="#modules">Formations</a><a href="#testimonials">Témoignages</a><a href="#faq">FAQ</a>
         <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" style="color:var(--c)">S'inscrire</a>
         <a href="#">Mentions légales</a>
       </div></nav>
@@ -658,6 +767,10 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
 <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" id="float-wa" class="pulse-w" aria-label="Rejoindre WhatsApp">
   <svg><use href="#ico-wa"/></svg>
 </a>
+
+<button id="back-top" aria-label="Retourner en haut de page">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+</button>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -857,6 +970,7 @@ const observe=(sel,cls='on')=>{
 observe('.sr');
 observe('.acard');
 observe('.srv-item');
+observe('.step-card');
 observe('.mod-card');
 observe('.testi-card');
 observe('.com-item');
@@ -903,6 +1017,13 @@ document.querySelectorAll('.faq-card').forEach(c=>{
     if(!o){c.classList.add('on-faq');c.querySelector('.faq-btn').setAttribute('aria-expanded','true')}
   });
 });
+
+/* ============================================================
+   9. BACK TO TOP
+============================================================ */
+const backTop=document.getElementById('back-top');
+window.addEventListener('scroll',()=>backTop.classList.toggle('show',scrollY>700),{passive:true});
+backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
 /* reduced motion */
 if(matchMedia('(prefers-reduced-motion:reduce)').matches){
