@@ -331,6 +331,27 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 .ci-fb{background:rgba(24,119,242,.04)}.ci-fb:hover{border-color:rgba(24,119,242,.3);background:rgba(24,119,242,.06)}
 .ci-fb .com-logo{background:rgba(24,119,242,.12);color:#1877F2}
 
+/* ===== CONTACT FORM ===== */
+#contact{position:relative;overflow:hidden}
+.contact-wrap{max-width:640px;margin:48px auto 0}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:.78rem;font-weight:600;color:var(--t);margin-bottom:8px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field input,.field select,.field textarea{
+  width:100%;padding:13px 16px;border-radius:12px;
+  background:rgba(255,255,255,.03);border:1px solid var(--b);color:var(--t);
+  font-family:'Inter',sans-serif;font-size:.87rem;transition:border-color .2s,background .2s;
+}
+.field select{cursor:pointer}
+.field select option{background:#0B0D16;color:var(--t)}
+.field textarea{resize:vertical;min-height:120px;line-height:1.6}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:rgba(0,229,255,.4);background:rgba(0,229,255,.03)}
+.field input::placeholder,.field textarea::placeholder{color:rgba(107,122,153,.6)}
+#contact-status{margin-top:16px;font-size:.82rem;min-height:1.2em}
+#contact-status.ok{color:var(--g)}
+#contact-status.err{color:#FF6B6B}
+@media(max-width:560px){.field-row{grid-template-columns:1fr}}
+
 /* ===== FAQ ===== */
 #faq{background:var(--bg2)}
 .faq-wrap{max-width:780px;margin:48px auto 0;display:flex;flex-direction:column;gap:10px}
@@ -411,6 +432,7 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
         <li><a href="#modules">Formations</a></li>
         <li><a href="#testimonials">Témoignages</a></li>
         <li><a href="#community">Communauté</a></li>
+        <li><a href="#contact">Contact</a></li>
         <li><a href="#faq">FAQ</a></li>
       </ul>
       <div class="nav-cta">
@@ -431,6 +453,7 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
   <a href="#modules" onclick="cm()">Formations</a>
   <a href="#testimonials" onclick="cm()">Témoignages</a>
   <a href="#community" onclick="cm()">Communauté</a>
+  <a href="#contact" onclick="cm()">Contact</a>
   <a href="#faq" onclick="cm()">FAQ</a>
   <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" onclick="cm()" style="color:var(--c);font-weight:600;border:none;margin-top:8px">S'inscrire sur Earnlix →</a>
 </div>
@@ -695,6 +718,45 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
 
 <hr class="div">
 
+<!-- CONTACT -->
+<section id="contact" class="sec" aria-labelledby="contact-title">
+  <div class="wrap">
+    <div class="sh c sr">
+      <span class="eyebrow">Contact</span>
+      <h2 id="contact-title">Une question <span class="grad">spécifique ?</span></h2>
+      <p style="margin-top:12px">Écris-nous directement — on te répond sur WhatsApp.</p>
+    </div>
+    <form class="contact-wrap sr d1" id="contact-form" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="cf-name">Nom</label>
+          <input type="text" id="cf-name" name="name" placeholder="Ton nom" autocomplete="name" required>
+        </div>
+        <div class="field">
+          <label for="cf-subject">Sujet</label>
+          <select id="cf-subject" name="subject">
+            <option value="Question générale">Question générale</option>
+            <option value="Formations">Formations</option>
+            <option value="Partenariat">Partenariat</option>
+            <option value="Support technique">Support technique</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="cf-message">Message</label>
+        <textarea id="cf-message" name="message" placeholder="Écris ton message ici..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-p" style="width:100%;justify-content:center">
+        <svg><use href="#ico-wa"/></svg> Envoyer sur WhatsApp
+      </button>
+      <p id="contact-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<hr class="div">
+
 <!-- FAQ -->
 <section id="faq" class="sec" aria-labelledby="faq-title">
   <div class="wrap">
@@ -747,7 +809,7 @@ footer{background:#050610;border-top:1px solid var(--b);padding:52px 0 32px}
         <div class="ft-brand"><span class="ft-name">Earnlix Africa</span><span class="ft-powered">Powered by Earnlix Digital</span></div>
       </div>
       <nav aria-label="Footer"><div class="ft-nav">
-        <a href="#hero">Accueil</a><a href="#about">À Propos</a><a href="#how">Étapes</a><a href="#modules">Formations</a><a href="#testimonials">Témoignages</a><a href="#faq">FAQ</a>
+        <a href="#hero">Accueil</a><a href="#about">À Propos</a><a href="#how">Étapes</a><a href="#modules">Formations</a><a href="#testimonials">Témoignages</a><a href="#contact">Contact</a><a href="#faq">FAQ</a>
         <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" style="color:var(--c)">S'inscrire</a>
         <a href="#">Mentions légales</a>
       </div></nav>
@@ -1019,7 +1081,45 @@ document.querySelectorAll('.faq-card').forEach(c=>{
 });
 
 /* ============================================================
-   9. BACK TO TOP
+   9. CONTACT FORM -> WHATSAPP
+============================================================ */
+/* Renseigne un numéro (format international, sans "+", ex: "2250700000000")
+   pour envoyer le message directement en conversation privée.
+   Tant qu'il est vide, le formulaire copie le message et ouvre le
+   groupe WhatsApp existant en solution de repli. */
+const CONTACT_WHATSAPP_NUMBER='';
+const contactForm=document.getElementById('contact-form');
+const contactStatus=document.getElementById('contact-status');
+contactForm.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!contactForm.checkValidity()){
+    contactForm.reportValidity();
+    return;
+  }
+  const name=document.getElementById('cf-name').value.trim();
+  const subject=document.getElementById('cf-subject').value;
+  const message=document.getElementById('cf-message').value.trim();
+  const text=`Bonjour Earnlix Africa,\n\nNom: ${name}\nSujet: ${subject}\nMessage: ${message}`;
+
+  if(CONTACT_WHATSAPP_NUMBER){
+    window.open(`https://wa.me/${CONTACT_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`,'_blank','noopener');
+    contactStatus.textContent='Ton message est prêt, tu es redirigé vers WhatsApp.';
+    contactStatus.className='ok';
+  } else {
+    try{
+      await navigator.clipboard.writeText(text);
+      contactStatus.textContent='Message copié ! Colle-le dans le groupe WhatsApp qui vient de s\'ouvrir.';
+    }catch{
+      contactStatus.textContent='Copie ton message ci-dessus et colle-le dans le groupe WhatsApp qui vient de s\'ouvrir.';
+    }
+    contactStatus.className='ok';
+    window.open('https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu','_blank','noopener');
+  }
+  contactForm.reset();
+});
+
+/* ============================================================
+   10. BACK TO TOP
 ============================================================ */
 const backTop=document.getElementById('back-top');
 window.addEventListener('scroll',()=>backTop.classList.toggle('show',scrollY>700),{passive:true});
