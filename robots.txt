@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://earnlix-africa.vercel.app/sitemap.xml
+Sitemap: https://earnlix-africa.netlify.app/sitemap.xml
