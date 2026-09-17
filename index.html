@@ -249,14 +249,20 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 .lang-opt.active{color:var(--c)}
 @media(max-width:480px){.lang-btn span{display:none}.lang-btn{padding:8px}}
 
-/* ===== VIDEO SHOWREEL ===== */
-#showreel{position:relative;overflow:hidden}
-.showreel-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:60px}
-.video-card{position:relative;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 20px 50px rgba(0,0,0,.4);opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
-.video-card.on{opacity:1;transform:none}
-.video-card video{width:100%;display:block;aspect-ratio:16/9;background:#000}
-.video-label{position:absolute;top:16px;left:16px;padding:5px 14px;border-radius:50px;background:rgba(7,8,13,.7);backdrop-filter:blur(8px);border:1px solid rgba(0,229,255,.25);font-size:.72rem;font-weight:600;color:var(--c);pointer-events:none}
-@media(max-width:860px){.showreel-grid{grid-template-columns:1fr}}
+/* ===== FEATURE VIDEO (full-width, autoplay on scroll) ===== */
+.feature-video{position:relative;overflow:hidden}
+.video-block{
+  position:relative;border-radius:24px;overflow:hidden;background:#000;
+  box-shadow:0 30px 70px rgba(0,0,0,.5), 0 0 0 1px rgba(0,229,255,.12);
+  opacity:0;transform:translateY(32px);
+  transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);
+}
+.video-block.on{opacity:1;transform:none}
+.video-block video{width:100%;display:block;aspect-ratio:16/9;background:#000}
+.video-label{position:absolute;top:18px;left:18px;padding:6px 16px;border-radius:50px;background:rgba(7,8,13,.7);backdrop-filter:blur(8px);border:1px solid rgba(0,229,255,.25);font-size:.78rem;font-weight:600;color:var(--c);pointer-events:none;z-index:2}
+.video-mute{position:absolute;bottom:18px;right:18px;width:42px;height:42px;border-radius:50%;background:rgba(7,8,13,.75);backdrop-filter:blur(8px);border:1px solid var(--b);display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer;z-index:2;transition:border-color .2s}
+.video-mute:hover{border-color:rgba(0,229,255,.4)}
+.video-mute svg{width:19px;height:19px}
 
 /* ===== BACK TO TOP ===== */
 #back-top{
@@ -467,7 +473,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="nav-brand"><span class="nav-title">Earnlix Africa</span><span class="nav-sub">Powered by Earnlix Digital</span></div>
       </a>
       <ul class="nav-links">
-        <li><a href="#showreel" data-i18n="nav.showreel">Vidéo</a></li>
         <li><a href="#about" data-i18n="nav.about">À Propos</a></li>
         <li><a href="#how" data-i18n="nav.how">Étapes</a></li>
         <li><a href="#services" data-i18n="nav.services">Services</a></li>
@@ -501,7 +506,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </nav>
 <div class="mob-menu" id="mob-menu">
-  <a href="#showreel" onclick="cm()" data-i18n="nav.showreel">Vidéo</a>
   <a href="#about" onclick="cm()" data-i18n="nav.about">À Propos</a>
   <a href="#how" onclick="cm()" data-i18n="nav.how">Étapes</a>
   <a href="#services" onclick="cm()" data-i18n="nav.services">Services</a>
@@ -546,27 +550,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <hr class="div">
 
-<!-- VIDEO SHOWREEL -->
-<section id="showreel" class="sec" aria-labelledby="showreel-title">
+<!-- FEATURE VIDEO 1 -->
+<section class="feature-video sec-sm" aria-label="Présentation vidéo Earnlix Africa">
   <div class="wrap">
-    <div class="sh c sr">
-      <span class="eyebrow" data-i18n="showreel.eyebrow">En vidéo</span>
-      <h2 id="showreel-title" data-i18n="showreel.title">Découvre <span class="grad">Earnlix Africa</span></h2>
-      <p style="margin-top:12px" data-i18n="showreel.sub">Deux vidéos pour comprendre en quelques secondes ce que la communauté peut t'apporter.</p>
-    </div>
-    <div class="showreel-grid">
-      <div class="video-card sr d1">
-        <span class="video-label" data-i18n="showreel.label1">Présentation</span>
-        <video controls preload="none" poster="video-showcase-1-poster.webp" playsinline>
-          <source src="video-showcase-1.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-card sr d2">
-        <span class="video-label" data-i18n="showreel.label2">Motion Design</span>
-        <video controls preload="none" poster="video-showcase-2-poster.webp" playsinline>
-          <source src="video-showcase-2.mp4" type="video/mp4">
-        </video>
-      </div>
+    <div class="video-block sr" data-autoplay-video>
+      <span class="video-label" data-i18n="showreel.label1">Présentation</span>
+      <button class="video-mute" aria-label="Activer le son" data-muted="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
+      <video muted loop playsinline preload="metadata" poster="video-showcase-1-poster.webp">
+        <source src="video-showcase-1.mp4" type="video/mp4">
+      </video>
     </div>
   </div>
 </section>
@@ -863,6 +857,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
+<!-- FEATURE VIDEO 2 -->
+<section class="feature-video sec-sm" aria-label="Motion design Earnlix Africa">
+  <div class="wrap">
+    <div class="video-block sr" data-autoplay-video>
+      <span class="video-label" data-i18n="showreel.label2">Motion Design</span>
+      <button class="video-mute" aria-label="Activer le son" data-muted="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H2v6h4l5 4V5Z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+      </button>
+      <video muted loop playsinline preload="metadata" poster="video-showcase-2-poster.webp">
+        <source src="video-showcase-2.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
 <!-- FINAL CTA -->
 <section id="final-cta">
   <div class="wrap">
@@ -891,7 +900,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="ft-brand"><span class="ft-name">Earnlix Africa</span><span class="ft-powered">Powered by Earnlix Digital</span></div>
       </div>
       <nav aria-label="Footer"><div class="ft-nav">
-        <a href="#hero" data-i18n="footer.home">Accueil</a><a href="#showreel" data-i18n="nav.showreel">Vidéo</a><a href="#about" data-i18n="nav.about">À Propos</a><a href="#how" data-i18n="nav.how">Étapes</a><a href="#modules" data-i18n="nav.modules">Formations</a><a href="#testimonials" data-i18n="nav.testimonials">Témoignages</a><a href="#contact" data-i18n="nav.contact">Contact</a><a href="#faq" data-i18n="nav.faq">FAQ</a>
+        <a href="#hero" data-i18n="footer.home">Accueil</a><a href="#about" data-i18n="nav.about">À Propos</a><a href="#how" data-i18n="nav.how">Étapes</a><a href="#modules" data-i18n="nav.modules">Formations</a><a href="#testimonials" data-i18n="nav.testimonials">Témoignages</a><a href="#contact" data-i18n="nav.contact">Contact</a><a href="#faq" data-i18n="nav.faq">FAQ</a>
         <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" style="color:var(--c)">S'inscrire</a>
         <a href="#" data-i18n="footer.legal">Mentions légales</a>
       </div></nav>
@@ -1378,7 +1387,6 @@ observe('.step-card');
 observe('.mod-card');
 observe('.testi-card');
 observe('.com-item');
-observe('.video-card');
 
 /* ============================================================
    6. TILT 3D — modules cards
@@ -1475,7 +1483,25 @@ window.addEventListener('scroll',()=>backTop.classList.toggle('show',scrollY>700
 backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
 
 /* ============================================================
-   11. ANALYTICS EVENTS — WhatsApp / Earnlix / réseaux sociaux
+   11. FEATURE VIDEOS — autoplay while in view, loop forever
+============================================================ */
+document.querySelectorAll('[data-autoplay-video]').forEach(block=>{
+  const video=block.querySelector('video');
+  const muteBtn=block.querySelector('.video-mute');
+  const vio=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting) video.play().catch(()=>{});
+    else video.pause();
+  }),{threshold:.4});
+  vio.observe(block);
+  muteBtn.addEventListener('click',()=>{
+    video.muted=!video.muted;
+    muteBtn.dataset.muted=video.muted;
+    muteBtn.setAttribute('aria-label',video.muted?'Activer le son':'Couper le son');
+  });
+});
+
+/* ============================================================
+   12. ANALYTICS EVENTS — WhatsApp / Earnlix / réseaux sociaux
 ============================================================ */
 document.addEventListener('click',e=>{
   if(typeof gtag!=='function')return;
@@ -1496,7 +1522,7 @@ document.addEventListener('click',e=>{
 });
 
 /* ============================================================
-   12. APPLY SAVED / DEFAULT LANGUAGE
+   13. APPLY SAVED / DEFAULT LANGUAGE
 ============================================================ */
 applyLanguage(currentLang);
 
