@@ -254,6 +254,8 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 .lang-switch.on .lang-btn svg{transform:rotate(180deg)}
 .lang-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:150px;background:rgba(11,13,22,.98);backdrop-filter:blur(20px);border:1px solid var(--b);border-radius:12px;padding:6px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .2s,transform .2s;z-index:1001}
 .lang-switch.on .lang-menu{opacity:1;transform:none;pointer-events:all}
+.flag-ico{width:18px;height:18px;border-radius:50%;flex-shrink:0;display:block;box-shadow:0 0 0 1px rgba(255,255,255,.12)}
+.lang-btn .flag-ico{width:16px;height:16px}
 .lang-opt{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;background:none;border:none;color:var(--m);font-family:'Inter',sans-serif;font-size:.82rem;text-align:left;cursor:pointer;transition:background .15s,color .15s}
 .lang-opt:hover{background:rgba(255,255,255,.05);color:#fff}
 .lang-opt.active{color:var(--c)}
@@ -471,6 +473,45 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <symbol id="ico-book" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M4 19.5A2.5 2.5 0 016.5 17H20M4 19.5A2.5 2.5 0 004 22h16V2H6.5A2.5 2.5 0 004 4.5v15z"/></symbol>
     <symbol id="ico-users" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></symbol>
     <symbol id="ico-trend" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M23 6l-9.5 9.5-5-5L1 18M17 6h6v6"/></symbol>
+    <symbol id="flag-fr" viewBox="0 0 24 24">
+      <clipPath id="flag-fr-clip"><circle cx="12" cy="12" r="12"/></clipPath>
+      <g clip-path="url(#flag-fr-clip)">
+        <rect x="0" y="0" width="8" height="24" fill="#0055A4"/>
+        <rect x="8" y="0" width="8" height="24" fill="#FFFFFF"/>
+        <rect x="16" y="0" width="8" height="24" fill="#EF4135"/>
+      </g>
+    </symbol>
+    <symbol id="flag-en" viewBox="0 0 24 24">
+      <clipPath id="flag-en-clip"><circle cx="12" cy="12" r="12"/></clipPath>
+      <g clip-path="url(#flag-en-clip)">
+        <rect x="0" y="0" width="24" height="24" fill="#012169"/>
+        <path d="M0 0 24 24M24 0 0 24" stroke="#FFFFFF" stroke-width="4.5"/>
+        <path d="M0 0 24 24M24 0 0 24" stroke="#C8102E" stroke-width="2"/>
+        <path d="M12 0V24M0 12H24" stroke="#FFFFFF" stroke-width="6"/>
+        <path d="M12 0V24M0 12H24" stroke="#C8102E" stroke-width="3.2"/>
+      </g>
+    </symbol>
+    <symbol id="flag-pt" viewBox="0 0 24 24">
+      <clipPath id="flag-pt-clip"><circle cx="12" cy="12" r="12"/></clipPath>
+      <g clip-path="url(#flag-pt-clip)">
+        <rect x="0" y="0" width="9.6" height="24" fill="#006233"/>
+        <rect x="9.6" y="0" width="14.4" height="24" fill="#FF0000"/>
+        <circle cx="9.6" cy="12" r="4" fill="#FFCC00" stroke="#FFFFFF" stroke-width="0.6"/>
+      </g>
+    </symbol>
+    <symbol id="flag-zh" viewBox="0 0 24 24">
+      <clipPath id="flag-zh-clip"><circle cx="12" cy="12" r="12"/></clipPath>
+      <g clip-path="url(#flag-zh-clip)">
+        <rect x="0" y="0" width="24" height="24" fill="#DE2910"/>
+        <g fill="#FFDE00">
+          <path d="M6 5l0.9 2.77H9.8L7.55 9.3l0.86 2.76L6 10.5l-2.4 1.56 0.86-2.76L2.2 7.77h2.9z"/>
+          <circle cx="10.5" cy="3.2" r="0.6"/>
+          <circle cx="12.3" cy="5.6" r="0.6"/>
+          <circle cx="12" cy="8.5" r="0.6"/>
+          <circle cx="10" cy="10.3" r="0.6"/>
+        </g>
+      </g>
+    </symbol>
   </defs>
 </svg>
 
@@ -494,14 +535,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </ul>
       <div class="lang-switch" id="lang-switch">
         <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false">
+          <svg class="flag-ico"><use id="lang-current-flag" href="#flag-fr"/></svg>
           <span id="lang-current">FR</span>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="lang-menu" id="lang-menu" role="listbox">
-          <button class="lang-opt" data-lang="fr" role="option">🇫🇷 Français</button>
-          <button class="lang-opt" data-lang="en" role="option">🇬🇧 English</button>
-          <button class="lang-opt" data-lang="pt" role="option">🇵🇹 Português</button>
-          <button class="lang-opt" data-lang="zh" role="option">🇨🇳 中文</button>
+          <button class="lang-opt" data-lang="fr" role="option"><svg class="flag-ico"><use href="#flag-fr"/></svg> Français</button>
+          <button class="lang-opt" data-lang="en" role="option"><svg class="flag-ico"><use href="#flag-en"/></svg> English</button>
+          <button class="lang-opt" data-lang="pt" role="option"><svg class="flag-ico"><use href="#flag-pt"/></svg> Português</button>
+          <button class="lang-opt" data-lang="zh" role="option"><svg class="flag-ico"><use href="#flag-zh"/></svg> 中文</button>
         </div>
       </div>
       <div class="nav-cta">
@@ -1191,6 +1233,8 @@ function applyLanguage(lang){
   });
   const langCurrent=document.getElementById('lang-current');
   if(langCurrent) langCurrent.textContent = lang.toUpperCase();
+  const langCurrentFlag=document.getElementById('lang-current-flag');
+  if(langCurrentFlag) langCurrentFlag.setAttribute('href','#flag-'+lang);
   document.querySelectorAll('.lang-opt').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
   /* restart the typewriter cleanly with the new language's lines */
   if(typeof li!=='undefined'){li=0;ci=0;del=false;if(tw)tw.innerHTML='';}
