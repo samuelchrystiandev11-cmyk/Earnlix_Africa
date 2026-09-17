@@ -145,8 +145,18 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 
 .hero-sub{font-size:clamp(.95rem,1.8vw,1.1rem);color:var(--m);max-width:540px;margin-bottom:40px;line-height:1.75;opacity:0;transform:translateY(18px);transition:opacity .75s .5s cubic-bezier(.22,1,.36,1),transform .75s .5s cubic-bezier(.22,1,.36,1)}
 .hero-sub.show{opacity:1;transform:none}
-.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px;opacity:0;transform:translateY(16px);transition:opacity .75s .7s cubic-bezier(.22,1,.36,1),transform .75s .7s cubic-bezier(.22,1,.36,1)}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:24px;opacity:0;transform:translateY(16px);transition:opacity .75s .7s cubic-bezier(.22,1,.36,1),transform .75s .7s cubic-bezier(.22,1,.36,1)}
 .hero-btns.show{opacity:1;transform:none}
+
+/* SOCIAL PROOF STRIP */
+.social-proof{display:flex;align-items:center;gap:14px;margin-bottom:32px;opacity:0;transform:translateY(14px);transition:opacity .75s .8s cubic-bezier(.22,1,.36,1),transform .75s .8s cubic-bezier(.22,1,.36,1)}
+.social-proof.show{opacity:1;transform:none}
+.sp-avatars{display:flex;flex-shrink:0}
+.sp-avatars img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid var(--bg);margin-left:-10px;display:block}
+.sp-avatars img:first-child{margin-left:0}
+.sp-stars{color:#FFB800;font-size:.8rem;letter-spacing:1px;line-height:1}
+.sp-score{color:#fff;font-weight:600;margin-left:3px}
+.sp-text{font-size:.78rem;color:var(--m);margin-top:2px}
 
 /* STATS */
 .stats{display:flex;gap:0;border:1px solid var(--b);border-radius:var(--r);overflow:hidden;background:rgba(255,255,255,.025);backdrop-filter:blur(12px);width:fit-content;opacity:0;transform:translateY(14px);transition:opacity .75s .9s cubic-bezier(.22,1,.36,1),transform .75s .9s cubic-bezier(.22,1,.36,1)}
@@ -533,6 +543,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-o" aria-label="S'inscrire sur Earnlix">
             <span data-i18n="btn.earnlix">S'inscrire sur Earnlix</span> <svg><use href="#ico-arr"/></svg>
           </a>
+        </div>
+        <div class="social-proof">
+          <div class="sp-avatars">
+            <img src="avatar-1.webp" alt="" width="34" height="34" loading="lazy">
+            <img src="avatar-2.webp" alt="" width="34" height="34" loading="lazy">
+            <img src="avatar-3.webp" alt="" width="34" height="34" loading="lazy">
+          </div>
+          <div>
+            <div class="sp-stars">★★★★★ <span class="sp-score">4.9/5</span></div>
+            <div class="sp-text" data-i18n="hero.social">Rejoint par plus de 1 000 membres actifs</div>
+          </div>
         </div>
         <div class="stats" role="list">
           <div class="stat" role="listitem"><div class="stat-n grad">+1 000</div><div class="stat-l" data-i18n="hero.stat1">Membres actifs</div></div>
@@ -932,6 +953,7 @@ fr: {
 "nav.showreel":"Vidéo","nav.about":"À Propos","nav.how":"Étapes","nav.services":"Services","nav.modules":"Formations","nav.testimonials":"Témoignages","nav.community":"Communauté","nav.contact":"Contact","nav.faq":"FAQ","nav.cta":"S'inscrire","mobile.cta":"S'inscrire sur Earnlix →",
 "meta.title":"Earnlix Africa — Maîtrise le Digital & Génère des Revenus","meta.description":"La première communauté africaine dédiée au marketing digital, à l'IA, au trading et à l'e-commerce via Earnlix Digital.",
 "hero.badge":"Communauté Africaine · +1 000 membres actifs",
+"hero.social":"Rejoint par plus de 1 000 membres actifs",
 "hero.lines":["Maîtrise le Digital.\nGénère des Revenus.","Passe de la Théorie\nà l'Action.","Rejoins la Communauté\nAfricaine #1."],
 "hero.sub":"La première communauté africaine dédiée au marketing d'affiliation Earnlix, à l'IA, au Trading et au E-commerce. Passe de la théorie à l'action.",
 "btn.whatsapp":"Rejoindre le Groupe WhatsApp","btn.earnlix":"S'inscrire sur Earnlix",
@@ -986,6 +1008,7 @@ en: {
 "nav.showreel":"Video","nav.about":"About","nav.how":"How It Works","nav.services":"Services","nav.modules":"Training","nav.testimonials":"Testimonials","nav.community":"Community","nav.contact":"Contact","nav.faq":"FAQ","nav.cta":"Sign Up","mobile.cta":"Sign up on Earnlix →",
 "meta.title":"Earnlix Africa — Master the Digital World & Generate Income","meta.description":"The first African community dedicated to digital marketing, AI, trading and e-commerce via Earnlix Digital.",
 "hero.badge":"African Community · +1,000 active members",
+"hero.social":"Joined by over 1,000 active members",
 "hero.lines":["Master the Digital World.\nGenerate Real Income.","Move From Theory\nTo Action.","Join Africa's #1\nCommunity."],
 "hero.sub":"The first African community dedicated to Earnlix affiliate marketing, AI, Trading and E-commerce. Move from theory to action.",
 "btn.whatsapp":"Join the WhatsApp Group","btn.earnlix":"Sign up on Earnlix",
@@ -1040,6 +1063,7 @@ pt: {
 "nav.showreel":"Vídeo","nav.about":"Sobre","nav.how":"Como Funciona","nav.services":"Serviços","nav.modules":"Formações","nav.testimonials":"Depoimentos","nav.community":"Comunidade","nav.contact":"Contato","nav.faq":"FAQ","nav.cta":"Inscrever-se","mobile.cta":"Inscrever-se na Earnlix →",
 "meta.title":"Earnlix Africa — Domine o Digital & Gere Renda","meta.description":"A primeira comunidade africana dedicada ao marketing digital, IA, trading e e-commerce através da Earnlix Digital.",
 "hero.badge":"Comunidade Africana · +1.000 membros ativos",
+"hero.social":"Já reuniu mais de 1.000 membros ativos",
 "hero.lines":["Domine o Digital.\nGere Renda Real.","Saia da Teoria\nPara a Ação.","Junte-se à Comunidade\nAfricana Nº 1."],
 "hero.sub":"A primeira comunidade africana dedicada ao marketing de afiliados da Earnlix, IA, Trading e E-commerce. Saia da teoria e parta para a ação.",
 "btn.whatsapp":"Entrar no Grupo do WhatsApp","btn.earnlix":"Inscrever-se na Earnlix",
@@ -1094,6 +1118,7 @@ zh: {
 "nav.showreel":"视频","nav.about":"关于我们","nav.how":"运作方式","nav.services":"服务","nav.modules":"培训课程","nav.testimonials":"会员见证","nav.community":"社区","nav.contact":"联系我们","nav.faq":"常见问题","nav.cta":"立即注册","mobile.cta":"在 Earnlix 注册 →",
 "meta.title":"Earnlix Africa — 掌握数字技能，创造真实收入","meta.description":"首个专注于数字营销、人工智能、交易和电商的非洲社区，由 Earnlix Digital 提供支持。",
 "hero.badge":"非洲社区 · 超过1000名活跃会员",
+"hero.social":"已有超过1000名活跃会员加入",
 "hero.lines":["掌握数字技能。\n创造真实收入。","从理论\n走向行动。","加入非洲第一\n数字社区。"],
 "hero.sub":"首个专注于 Earnlix 联盟营销、人工智能、交易和电商的非洲社区。从理论走向行动。",
 "btn.whatsapp":"加入 WhatsApp 群组","btn.earnlix":"在 Earnlix 注册",
@@ -1220,6 +1245,7 @@ setTimeout(type,600);
 setTimeout(()=>{
   document.querySelector('.hero-sub').classList.add('show');
   document.querySelector('.hero-btns').classList.add('show');
+  document.querySelector('.social-proof').classList.add('show');
   document.querySelector('.stats').classList.add('show');
 },800);
 
