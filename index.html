@@ -598,7 +598,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
         <div class="stats" role="list">
-          <div class="stat" role="listitem"><div class="stat-n grad">+1 000</div><div class="stat-l" data-i18n="hero.stat1">Membres actifs</div></div>
+          <div class="stat" role="listitem"><div class="stat-n grad" data-i18n="hero.stat1n">+1 000</div><div class="stat-l" data-i18n="hero.stat1">Membres actifs</div></div>
           <div class="stat" role="listitem"><div class="stat-n" style="color:var(--g)">98%</div><div class="stat-l" data-i18n="hero.stat2">Satisfaction</div></div>
           <div class="stat" role="listitem"><div class="stat-n grad-v">100%</div><div class="stat-l" data-i18n="hero.stat3">Pratique</div></div>
         </div>
@@ -999,7 +999,7 @@ fr: {
 "hero.lines":["Maîtrise le Digital.\nGénère des Revenus.","Passe de la Théorie\nà l'Action.","Rejoins la Communauté\nAfricaine #1."],
 "hero.sub":"La première communauté africaine dédiée au marketing d'affiliation Earnlix, à l'IA, au Trading et au E-commerce. Passe de la théorie à l'action.",
 "btn.whatsapp":"Rejoindre le Groupe WhatsApp","btn.earnlix":"S'inscrire sur Earnlix",
-"hero.stat1":"Membres actifs","hero.stat2":"Satisfaction","hero.stat3":"Pratique",
+"hero.stat1":"Membres actifs","hero.stat2":"Satisfaction","hero.stat3":"Pratique","hero.stat1n":"+1 000",
 "showreel.eyebrow":"En vidéo","showreel.title":"Découvre <span class=\"grad\">Earnlix Africa</span>","showreel.sub":"Deux vidéos pour comprendre en quelques secondes ce que la communauté peut t'apporter.","showreel.label1":"Présentation","showreel.label2":"Motion Design",
 "about.eyebrow":"Mission",
 "about.p1":"Notre mission est de rendre le business digital concret et accessible à tout africain motivé. Pas de promesses vagues — des méthodes testées sur le terrain.",
@@ -1054,7 +1054,7 @@ en: {
 "hero.lines":["Master the Digital World.\nGenerate Real Income.","Move From Theory\nTo Action.","Join Africa's #1\nCommunity."],
 "hero.sub":"The first African community dedicated to Earnlix affiliate marketing, AI, Trading and E-commerce. Move from theory to action.",
 "btn.whatsapp":"Join the WhatsApp Group","btn.earnlix":"Sign up on Earnlix",
-"hero.stat1":"Active members","hero.stat2":"Satisfaction","hero.stat3":"Hands-on",
+"hero.stat1":"Active members","hero.stat2":"Satisfaction","hero.stat3":"Hands-on","hero.stat1n":"+1,000",
 "showreel.eyebrow":"On Video","showreel.title":"Discover <span class=\"grad\">Earnlix Africa</span>","showreel.sub":"Two videos to understand in a few seconds what the community can bring you.","showreel.label1":"Overview","showreel.label2":"Motion Design",
 "about.eyebrow":"Mission",
 "about.p1":"Our mission is to make digital business concrete and accessible to every motivated African. No vague promises — methods tested in the field.",
@@ -1109,7 +1109,7 @@ pt: {
 "hero.lines":["Domine o Digital.\nGere Renda Real.","Saia da Teoria\nPara a Ação.","Junte-se à Comunidade\nAfricana Nº 1."],
 "hero.sub":"A primeira comunidade africana dedicada ao marketing de afiliados da Earnlix, IA, Trading e E-commerce. Saia da teoria e parta para a ação.",
 "btn.whatsapp":"Entrar no Grupo do WhatsApp","btn.earnlix":"Inscrever-se na Earnlix",
-"hero.stat1":"Membros ativos","hero.stat2":"Satisfação","hero.stat3":"Prático",
+"hero.stat1":"Membros ativos","hero.stat2":"Satisfação","hero.stat3":"Prático","hero.stat1n":"+1.000",
 "showreel.eyebrow":"Em vídeo","showreel.title":"Descubra a <span class=\"grad\">Earnlix Africa</span>","showreel.sub":"Dois vídeos para entender em segundos o que a comunidade pode te oferecer.","showreel.label1":"Apresentação","showreel.label2":"Motion Design",
 "about.eyebrow":"Missão",
 "about.p1":"Nossa missão é tornar o negócio digital concreto e acessível a todo africano motivado. Sem promessas vagas — métodos testados na prática.",
@@ -1164,7 +1164,7 @@ zh: {
 "hero.lines":["掌握数字技能。\n创造真实收入。","从理论\n走向行动。","加入非洲第一\n数字社区。"],
 "hero.sub":"首个专注于 Earnlix 联盟营销、人工智能、交易和电商的非洲社区。从理论走向行动。",
 "btn.whatsapp":"加入 WhatsApp 群组","btn.earnlix":"在 Earnlix 注册",
-"hero.stat1":"活跃会员","hero.stat2":"满意度","hero.stat3":"实操性",
+"hero.stat1":"活跃会员","hero.stat2":"满意度","hero.stat3":"实操性","hero.stat1n":"1000+",
 "showreel.eyebrow":"视频介绍","showreel.title":"了解 <span class=\"grad\">Earnlix Africa</span>","showreel.sub":"两段视频，几秒钟内了解社区能为你带来什么。","showreel.label1":"介绍","showreel.label2":"动态设计",
 "about.eyebrow":"使命",
 "about.p1":"我们的使命是让数字商业变得具体且人人可及，服务每一位积极进取的非洲人。没有空洞的承诺——只有经过实战检验的方法。",
@@ -1297,6 +1297,8 @@ setTimeout(()=>{
    3. THREE.JS HERO — GLOBE PARTICULES
 ============================================================ */
 (function(){
+ try{
+  if(typeof THREE==='undefined') throw new Error('THREE.js not loaded');
   const canvas=document.getElementById('hero-canvas');
   const W=()=>canvas.offsetWidth, H=()=>canvas.offsetHeight;
   const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
@@ -1393,6 +1395,11 @@ setTimeout(()=>{
     camera.aspect=W()/H();
     camera.updateProjectionMatrix();
   },{passive:true});
+ }catch(e){
+  console.warn('Hero 3D globe unavailable, continuing without it:',e);
+  const canvas=document.getElementById('hero-canvas');
+  if(canvas) canvas.style.display='none';
+ }
 })();
 
 /* ============================================================
