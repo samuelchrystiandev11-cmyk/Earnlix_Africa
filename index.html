@@ -102,14 +102,14 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 /* NAVBAR */
 #nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
 #nav.on{background:rgba(7,8,13,.9);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-color:var(--b)}
-.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px;gap:14px}
 .nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
 .nav-logo img{height:36px;width:auto;object-fit:contain}
 .nav-brand{display:flex;flex-direction:column;line-height:1.2}
 .nav-title{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:800;color:#fff}
 .nav-sub{font-size:.58rem;color:var(--m);letter-spacing:.04em}
-.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
-.nav-links a{font-size:.8rem;font-weight:500;color:var(--m);transition:color .2s}
+.nav-links{display:flex;align-items:center;gap:18px;list-style:none}
+.nav-links a{font-size:.8rem;font-weight:500;color:var(--m);transition:color .2s;white-space:nowrap}
 .nav-links a:hover{color:#fff}
 .nav-cta{display:flex;align-items:center}
 .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;border:none;background:none}
@@ -235,6 +235,28 @@ h3{font-size:1rem;font-weight:700;letter-spacing:0}
 .cta-panel p{color:var(--m);font-size:.95rem;max-width:560px;margin:0 auto 36px;line-height:1.75}
 .cta-btns{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-bottom:26px}
 .cta-note{font-size:.74rem;color:rgba(107,122,153,.7)}
+
+/* ===== LANGUAGE SWITCHER ===== */
+.lang-switch{position:relative}
+.lang-btn{display:flex;align-items:center;gap:6px;padding:8px 14px;border-radius:50px;background:var(--s);border:1px solid var(--b);color:var(--t);font-family:'Inter',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;transition:border-color .2s}
+.lang-btn:hover{border-color:rgba(0,229,255,.3)}
+.lang-btn svg{width:13px;height:13px;color:var(--m);transition:transform .2s}
+.lang-switch.on .lang-btn svg{transform:rotate(180deg)}
+.lang-menu{position:absolute;top:calc(100% + 8px);right:0;min-width:150px;background:rgba(11,13,22,.98);backdrop-filter:blur(20px);border:1px solid var(--b);border-radius:12px;padding:6px;opacity:0;transform:translateY(-6px);pointer-events:none;transition:opacity .2s,transform .2s;z-index:1001}
+.lang-switch.on .lang-menu{opacity:1;transform:none;pointer-events:all}
+.lang-opt{display:flex;align-items:center;gap:10px;width:100%;padding:9px 12px;border-radius:8px;background:none;border:none;color:var(--m);font-family:'Inter',sans-serif;font-size:.82rem;text-align:left;cursor:pointer;transition:background .15s,color .15s}
+.lang-opt:hover{background:rgba(255,255,255,.05);color:#fff}
+.lang-opt.active{color:var(--c)}
+@media(max-width:480px){.lang-btn span{display:none}.lang-btn{padding:8px}}
+
+/* ===== VIDEO SHOWREEL ===== */
+#showreel{position:relative;overflow:hidden}
+.showreel-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:60px}
+.video-card{position:relative;border-radius:20px;overflow:hidden;background:#000;box-shadow:0 20px 50px rgba(0,0,0,.4);opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+.video-card.on{opacity:1;transform:none}
+.video-card video{width:100%;display:block;aspect-ratio:16/9;background:#000}
+.video-label{position:absolute;top:16px;left:16px;padding:5px 14px;border-radius:50px;background:rgba(7,8,13,.7);backdrop-filter:blur(8px);border:1px solid rgba(0,229,255,.25);font-size:.72rem;font-weight:600;color:var(--c);pointer-events:none}
+@media(max-width:860px){.showreel-grid{grid-template-columns:1fr}}
 
 /* ===== BACK TO TOP ===== */
 #back-top{
@@ -445,18 +467,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="nav-brand"><span class="nav-title">Earnlix Africa</span><span class="nav-sub">Powered by Earnlix Digital</span></div>
       </a>
       <ul class="nav-links">
-        <li><a href="#about">À Propos</a></li>
-        <li><a href="#how">Étapes</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#modules">Formations</a></li>
-        <li><a href="#testimonials">Témoignages</a></li>
-        <li><a href="#community">Communauté</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#showreel" data-i18n="nav.showreel">Vidéo</a></li>
+        <li><a href="#about" data-i18n="nav.about">À Propos</a></li>
+        <li><a href="#how" data-i18n="nav.how">Étapes</a></li>
+        <li><a href="#services" data-i18n="nav.services">Services</a></li>
+        <li><a href="#modules" data-i18n="nav.modules">Formations</a></li>
+        <li><a href="#testimonials" data-i18n="nav.testimonials">Témoignages</a></li>
+        <li><a href="#community" data-i18n="nav.community">Communauté</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
       </ul>
+      <div class="lang-switch" id="lang-switch">
+        <button class="lang-btn" id="lang-btn" aria-haspopup="listbox" aria-expanded="false">
+          <span id="lang-current">FR</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="lang-menu" id="lang-menu" role="listbox">
+          <button class="lang-opt" data-lang="fr" role="option">🇫🇷 Français</button>
+          <button class="lang-opt" data-lang="en" role="option">🇬🇧 English</button>
+          <button class="lang-opt" data-lang="pt" role="option">🇵🇹 Português</button>
+          <button class="lang-opt" data-lang="zh" role="option">🇨🇳 中文</button>
+        </div>
+      </div>
       <div class="nav-cta">
         <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-p pulse">
-          <svg><use href="#ico-arr"/></svg> S'inscrire
+          <svg><use href="#ico-arr"/></svg> <span data-i18n="nav.cta">S'inscrire</span>
         </a>
       </div>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
@@ -466,15 +501,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </nav>
 <div class="mob-menu" id="mob-menu">
-  <a href="#about" onclick="cm()">À Propos</a>
-  <a href="#how" onclick="cm()">Étapes</a>
-  <a href="#services" onclick="cm()">Services</a>
-  <a href="#modules" onclick="cm()">Formations</a>
-  <a href="#testimonials" onclick="cm()">Témoignages</a>
-  <a href="#community" onclick="cm()">Communauté</a>
-  <a href="#contact" onclick="cm()">Contact</a>
-  <a href="#faq" onclick="cm()">FAQ</a>
-  <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" onclick="cm()" style="color:var(--c);font-weight:600;border:none;margin-top:8px">S'inscrire sur Earnlix →</a>
+  <a href="#showreel" onclick="cm()" data-i18n="nav.showreel">Vidéo</a>
+  <a href="#about" onclick="cm()" data-i18n="nav.about">À Propos</a>
+  <a href="#how" onclick="cm()" data-i18n="nav.how">Étapes</a>
+  <a href="#services" onclick="cm()" data-i18n="nav.services">Services</a>
+  <a href="#modules" onclick="cm()" data-i18n="nav.modules">Formations</a>
+  <a href="#testimonials" onclick="cm()" data-i18n="nav.testimonials">Témoignages</a>
+  <a href="#community" onclick="cm()" data-i18n="nav.community">Communauté</a>
+  <a href="#contact" onclick="cm()" data-i18n="nav.contact">Contact</a>
+  <a href="#faq" onclick="cm()" data-i18n="nav.faq">FAQ</a>
+  <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" onclick="cm()" style="color:var(--c);font-weight:600;border:none;margin-top:8px"><span data-i18n="mobile.cta">S'inscrire sur Earnlix →</span></a>
 </div>
 
 <!-- HERO -->
@@ -483,21 +519,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="wrap" style="position:relative;z-index:2">
     <div class="hero-layout">
       <div class="hero-left">
-        <div class="live-badge"><span class="live-dot"></span>Communauté Africaine · +1 000 membres actifs</div>
+        <div class="live-badge"><span class="live-dot"></span><span data-i18n="hero.badge">Communauté Africaine · +1 000 membres actifs</span></div>
         <h1 class="hero-title" id="h-title"><span id="typewriter"></span><span class="cursor"></span></h1>
-        <p class="hero-sub">La première communauté africaine dédiée au marketing d'affiliation Earnlix, à l'IA, au Trading et au E-commerce. Passe de la théorie à l'action.</p>
+        <p class="hero-sub" data-i18n="hero.sub">La première communauté africaine dédiée au marketing d'affiliation Earnlix, à l'IA, au Trading et au E-commerce. Passe de la théorie à l'action.</p>
         <div class="hero-btns">
           <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" class="btn btn-p pulse" aria-label="Rejoindre le groupe WhatsApp">
-            <svg><use href="#ico-wa"/></svg> Rejoindre le Groupe WhatsApp
+            <svg><use href="#ico-wa"/></svg> <span data-i18n="btn.whatsapp">Rejoindre le Groupe WhatsApp</span>
           </a>
           <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-o" aria-label="S'inscrire sur Earnlix">
-            S'inscrire sur Earnlix <svg><use href="#ico-arr"/></svg>
+            <span data-i18n="btn.earnlix">S'inscrire sur Earnlix</span> <svg><use href="#ico-arr"/></svg>
           </a>
         </div>
         <div class="stats" role="list">
-          <div class="stat" role="listitem"><div class="stat-n grad">+1 000</div><div class="stat-l">Membres actifs</div></div>
-          <div class="stat" role="listitem"><div class="stat-n" style="color:var(--g)">98%</div><div class="stat-l">Satisfaction</div></div>
-          <div class="stat" role="listitem"><div class="stat-n grad-v">100%</div><div class="stat-l">Pratique</div></div>
+          <div class="stat" role="listitem"><div class="stat-n grad">+1 000</div><div class="stat-l" data-i18n="hero.stat1">Membres actifs</div></div>
+          <div class="stat" role="listitem"><div class="stat-n" style="color:var(--g)">98%</div><div class="stat-l" data-i18n="hero.stat2">Satisfaction</div></div>
+          <div class="stat" role="listitem"><div class="stat-n grad-v">100%</div><div class="stat-l" data-i18n="hero.stat3">Pratique</div></div>
         </div>
       </div>
       <div class="hero-right">
@@ -510,32 +546,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <hr class="div">
 
+<!-- VIDEO SHOWREEL -->
+<section id="showreel" class="sec" aria-labelledby="showreel-title">
+  <div class="wrap">
+    <div class="sh c sr">
+      <span class="eyebrow" data-i18n="showreel.eyebrow">En vidéo</span>
+      <h2 id="showreel-title" data-i18n="showreel.title">Découvre <span class="grad">Earnlix Africa</span></h2>
+      <p style="margin-top:12px" data-i18n="showreel.sub">Deux vidéos pour comprendre en quelques secondes ce que la communauté peut t'apporter.</p>
+    </div>
+    <div class="showreel-grid">
+      <div class="video-card sr d1">
+        <span class="video-label" data-i18n="showreel.label1">Présentation</span>
+        <video controls preload="none" poster="video-showcase-1-poster.webp" playsinline>
+          <source src="video-showcase-1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="video-card sr d2">
+        <span class="video-label" data-i18n="showreel.label2">Motion Design</span>
+        <video controls preload="none" poster="video-showcase-2-poster.webp" playsinline>
+          <source src="video-showcase-2.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
 <!-- ABOUT -->
 <section id="about" class="sec" aria-labelledby="ab-title">
   <div class="wrap">
     <div class="about-layout">
       <div class="about-text sr">
-        <span class="eyebrow">Mission</span>
+        <span class="eyebrow" data-i18n="about.eyebrow">Mission</span>
         <h2 id="ab-title">Earnlix Africa<br><span class="grad">& Earnlix Digital</span></h2>
-        <p style="margin-top:18px">Notre mission est de rendre le business digital concret et accessible à tout africain motivé. Pas de promesses vagues — des méthodes testées sur le terrain.</p>
-        <p>Qu'il s'agisse de générer un revenu complémentaire ou de se reconvertir entièrement dans le digital, nous accompagnons chaque membre de l'idée jusqu'aux premiers résultats.</p>
+        <p style="margin-top:18px" data-i18n="about.p1">Notre mission est de rendre le business digital concret et accessible à tout africain motivé. Pas de promesses vagues — des méthodes testées sur le terrain.</p>
+        <p data-i18n="about.p2">Qu'il s'agisse de générer un revenu complémentaire ou de se reconvertir entièrement dans le digital, nous accompagnons chaque membre de l'idée jusqu'aux premiers résultats.</p>
         <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-p" style="margin-top:28px;width:fit-content">
-          <svg><use href="#ico-arr"/></svg> S'inscrire gratuitement
+          <svg><use href="#ico-arr"/></svg> <span data-i18n="about.cta">S'inscrire gratuitement</span>
         </a>
       </div>
       <div class="about-cards" style="perspective:1000px">
         <img src="illus-globe.webp" alt="Réseau digital panafricain connecté" class="about-visual sr" width="1280" height="880" loading="lazy">
         <div class="glass acard d1">
           <div class="acard-icon ic-c"><svg><use href="#ico-book"/></svg></div>
-          <div class="acard-body"><h3>Formation Pratique</h3><p>Guides pas-à-pas et tutoriels applicables immédiatement. Zéro théorie inutile.</p></div>
+          <div class="acard-body"><h3 data-i18n="about.card1.title">Formation Pratique</h3><p data-i18n="about.card1.desc">Guides pas-à-pas et tutoriels applicables immédiatement. Zéro théorie inutile.</p></div>
         </div>
         <div class="glass acard d2">
           <div class="acard-icon ic-g"><svg><use href="#ico-users"/></svg></div>
-          <div class="acard-body"><h3>Entraide & Mentorat</h3><p>Suivi quotidien avec des membres expérimentés disponibles pour toutes tes questions.</p></div>
+          <div class="acard-body"><h3 data-i18n="about.card2.title">Entraide & Mentorat</h3><p data-i18n="about.card2.desc">Suivi quotidien avec des membres expérimentés disponibles pour toutes tes questions.</p></div>
         </div>
         <div class="glass acard d3">
           <div class="acard-icon ic-v"><svg><use href="#ico-trend"/></svg></div>
-          <div class="acard-body"><h3>Monétisation & Affiliation</h3><p>Commissions récurrentes via Earnlix Digital pour transformer ton réseau en revenus.</p></div>
+          <div class="acard-body"><h3 data-i18n="about.card3.title">Monétisation & Affiliation</h3><p data-i18n="about.card3.desc">Commissions récurrentes via Earnlix Digital pour transformer ton réseau en revenus.</p></div>
         </div>
       </div>
     </div>
@@ -548,30 +611,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="how" class="sec" aria-labelledby="how-title">
   <div class="wrap">
     <div class="sh c sr">
-      <span class="eyebrow">Étapes</span>
-      <h2 id="how-title">Comment <span class="grad">ça marche</span></h2>
-      <p style="margin-top:12px">Quatre étapes simples pour passer de spectateur à acteur du digital.</p>
+      <span class="eyebrow" data-i18n="nav.how">Étapes</span>
+      <h2 id="how-title" data-i18n="how.title">Comment <span class="grad">ça marche</span></h2>
+      <p style="margin-top:12px" data-i18n="how.sub">Quatre étapes simples pour passer de spectateur à acteur du digital.</p>
     </div>
     <div class="steps-grid">
       <div class="glass step-card d1">
         <div class="step-num">01</div>
-        <h3>Rejoins le groupe WhatsApp</h3>
-        <p>Accès gratuit et immédiat à la communauté, au coaching quotidien et aux ressources.</p>
+        <h3 data-i18n="how.s1.title">Rejoins le groupe WhatsApp</h3>
+        <p data-i18n="how.s1.desc">Accès gratuit et immédiat à la communauté, au coaching quotidien et aux ressources.</p>
       </div>
       <div class="glass step-card d2">
         <div class="step-num">02</div>
-        <h3>Inscris-toi sur Earnlix</h3>
-        <p>Crée ton compte Earnlix Digital gratuitement pour activer ton parcours d'affiliation.</p>
+        <h3 data-i18n="how.s2.title">Inscris-toi sur Earnlix</h3>
+        <p data-i18n="how.s2.desc">Crée ton compte Earnlix Digital gratuitement pour activer ton parcours d'affiliation.</p>
       </div>
       <div class="glass step-card d3">
         <div class="step-num">03</div>
-        <h3>Suis les formations</h3>
-        <p>Trading, e-commerce, IA, marketing vidéo — apprends à ton rythme avec le mentorat du groupe.</p>
+        <h3 data-i18n="how.s3.title">Suis les formations</h3>
+        <p data-i18n="how.s3.desc">Trading, e-commerce, IA, marketing vidéo — apprends à ton rythme avec le mentorat du groupe.</p>
       </div>
       <div class="glass step-card d4">
         <div class="step-num">04</div>
-        <h3>Génère tes revenus</h3>
-        <p>Applique ce que tu apprends, touche tes premières commissions et deviens mentor à ton tour.</p>
+        <h3 data-i18n="how.s4.title">Génère tes revenus</h3>
+        <p data-i18n="how.s4.desc">Applique ce que tu apprends, touche tes premières commissions et deviens mentor à ton tour.</p>
       </div>
     </div>
   </div>
@@ -583,30 +646,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="services" class="sec" aria-labelledby="srv-title">
   <div class="wrap">
     <div class="sh sr">
-      <span class="eyebrow">Groupe WhatsApp</span>
-      <h2 id="srv-title">Ce que tu trouves<br><span class="grad">dans le groupe</span></h2>
-      <p style="margin-top:12px">Un espace structuré où l'information pratique circule chaque jour.</p>
+      <span class="eyebrow" data-i18n="services.eyebrow">Groupe WhatsApp</span>
+      <h2 id="srv-title" data-i18n="services.title">Ce que tu trouves<br><span class="grad">dans le groupe</span></h2>
+      <p style="margin-top:12px" data-i18n="services.sub">Un espace structuré où l'information pratique circule chaque jour.</p>
     </div>
     <div class="srv-track">
       <div class="srv-item d1">
         <div class="srv-num">01</div>
-        <h3>Live Coaching & Sessions Q/R</h3>
-        <p>Des sessions en direct régulières pour débloquer tes situations et accélérer ta progression avec des experts disponibles en temps réel.</p>
+        <h3 data-i18n="services.i1.title">Live Coaching & Sessions Q/R</h3>
+        <p data-i18n="services.i1.desc">Des sessions en direct régulières pour débloquer tes situations et accélérer ta progression avec des experts disponibles en temps réel.</p>
       </div>
       <div class="srv-item d2">
         <div class="srv-num">02</div>
-        <h3>Stratégies d'Affiliation prêtes à l'emploi</h3>
-        <p>Scripts de vente, visuels optimisés, messages types — tout ce qu'il faut pour promouvoir Earnlix efficacement dès le premier jour.</p>
+        <h3 data-i18n="services.i2.title">Stratégies d'Affiliation prêtes à l'emploi</h3>
+        <p data-i18n="services.i2.desc">Scripts de vente, visuels optimisés, messages types — tout ce qu'il faut pour promouvoir Earnlix efficacement dès le premier jour.</p>
       </div>
       <div class="srv-item d3">
         <div class="srv-num">03</div>
-        <h3>Alertes & Opportunités en avant-première</h3>
-        <p>Sois informé en premier des nouvelles opportunités, promotions et tendances du digital avant la masse.</p>
+        <h3 data-i18n="services.i3.title">Alertes & Opportunités en avant-première</h3>
+        <p data-i18n="services.i3.desc">Sois informé en premier des nouvelles opportunités, promotions et tendances du digital avant la masse.</p>
       </div>
       <div class="srv-item d4">
         <div class="srv-num">04</div>
-        <h3>Réseau d'Entraide</h3>
-        <p>Un vrai réseau de passionnés du web africain. Partage, collabore et grandis aux côtés de personnes qui comprennent tes ambitions.</p>
+        <h3 data-i18n="services.i4.title">Réseau d'Entraide</h3>
+        <p data-i18n="services.i4.desc">Un vrai réseau de passionnés du web africain. Partage, collabore et grandis aux côtés de personnes qui comprennent tes ambitions.</p>
       </div>
     </div>
   </div>
@@ -618,16 +681,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="modules" class="sec" aria-labelledby="mod-title">
   <div class="wrap">
     <div class="sh sr">
-      <span class="eyebrow">Contenus & Formations</span>
-      <h2 id="mod-title">Nos modules<br><span class="grad">de formation</span></h2>
-      <p style="margin-top:12px">Pensés pour l'Afrique, adaptés à ton niveau, orientés vers la pratique immédiate.</p>
+      <span class="eyebrow" data-i18n="modules.eyebrow">Contenus & Formations</span>
+      <h2 id="mod-title" data-i18n="modules.title">Nos modules<br><span class="grad">de formation</span></h2>
+      <p style="margin-top:12px" data-i18n="modules.sub">Pensés pour l'Afrique, adaptés à ton niveau, orientés vers la pratique immédiate.</p>
     </div>
     <div class="mod-grid" id="mod-grid">
-      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-trading.webp" alt="Illustration trading Forex et Crypto" class="mod-img" width="960" height="960" loading="lazy"><div class="mod-line ml-c"></div><h3>Trading Forex & Crypto</h3><p>Initiation aux marchés financiers, gestion du risque et stratégies pour débutants et intermédiaires.</p><span class="mod-tag">Débutant → Avancé</span></div></div>
-      <div class="glass mod-card d2"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-ecommerce.webp" alt="Illustration importation et e-commerce" class="mod-img" width="960" height="960" loading="lazy"><div class="mod-line ml-g"></div><h3>Importation Chine & E-commerce</h3><p>Achète via Alibaba au prix d'usine et revends en Afrique avec une marge confortable.</p><span class="mod-tag">Business réel</span></div></div>
-      <div class="glass mod-card d3"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-ai.webp" alt="Illustration intelligence artificielle et productivité" class="mod-img" width="960" height="960" loading="lazy"><div class="mod-line ml-v"></div><h3>IA & Productivité</h3><p>ChatGPT, Midjourney, automatisation. Multiplie ta productivité et tes revenus grâce aux outils IA.</p><span class="mod-tag">Futur du travail</span></div></div>
-      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-video.webp" alt="Illustration marketing vidéo TikTok et YouTube" class="mod-img" width="960" height="960" loading="lazy"><div class="mod-line ml-c"></div><h3>Marketing TikTok & YouTube</h3><p>Crée du contenu viral, développe une audience et monétise ta visibilité sur les plateformes vidéo.</p><span class="mod-tag">Visibilité & Revenus</span></div></div>
-      <div class="glass mod-card mod-span d2"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-affiliate.webp" alt="Illustration réseau d'affiliation Earnlix" class="mod-img" width="1280" height="880" loading="lazy"><div class="mod-line" style="background:linear-gradient(90deg,var(--c),var(--g))"></div><h3>Marketing d'Affiliation Earnlix</h3><p>Le cœur de la communauté. Maîtrise le parrainage Earnlix, génère des commissions récurrentes et construis une rente digitale durable depuis l'Afrique.</p><span class="mod-tag">Commissions récurrentes</span></div></div>
+      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-trading.webp" alt="Illustration trading Forex et Crypto" class="mod-img" width="960" height="960" loading="lazy"><div class="mod-line ml-c"></div><h3 data-i18n="modules.c1.title">Trading Forex & Crypto</h3><p data-i18n="modules.c1.desc">Initiation aux marchés financiers, gestion du risque et stratégies pour débutants et intermédiaires.</p><span class="mod-tag" data-i18n="modules.c1.tag">Débutant → Avancé</span></div></div>
+      <div class="glass mod-card d2"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-ecommerce.webp" alt="Illustration importation et e-commerce" class="mod-img" width="960" height="960" loading="lazy"><div class="mod-line ml-g"></div><h3 data-i18n="modules.c2.title">Importation Chine & E-commerce</h3><p data-i18n="modules.c2.desc">Achète via Alibaba au prix d'usine et revends en Afrique avec une marge confortable.</p><span class="mod-tag" data-i18n="modules.c2.tag">Business réel</span></div></div>
+      <div class="glass mod-card d3"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-ai.webp" alt="Illustration intelligence artificielle et productivité" class="mod-img" width="960" height="960" loading="lazy"><div class="mod-line ml-v"></div><h3 data-i18n="modules.c3.title">IA & Productivité</h3><p data-i18n="modules.c3.desc">ChatGPT, Midjourney, automatisation. Multiplie ta productivité et tes revenus grâce aux outils IA.</p><span class="mod-tag" data-i18n="modules.c3.tag">Futur du travail</span></div></div>
+      <div class="glass mod-card d1"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-video.webp" alt="Illustration marketing vidéo TikTok et YouTube" class="mod-img" width="960" height="960" loading="lazy"><div class="mod-line ml-c"></div><h3 data-i18n="modules.c4.title">Marketing TikTok & YouTube</h3><p data-i18n="modules.c4.desc">Crée du contenu viral, développe une audience et monétise ta visibilité sur les plateformes vidéo.</p><span class="mod-tag" data-i18n="modules.c4.tag">Visibilité & Revenus</span></div></div>
+      <div class="glass mod-card mod-span d2"><div class="mod-glow"></div><div class="mod-card-inner"><img src="illus-affiliate.webp" alt="Illustration réseau d'affiliation Earnlix" class="mod-img" width="1280" height="880" loading="lazy"><div class="mod-line" style="background:linear-gradient(90deg,var(--c),var(--g))"></div><h3 data-i18n="modules.c5.title">Marketing d'Affiliation Earnlix</h3><p data-i18n="modules.c5.desc">Le cœur de la communauté. Maîtrise le parrainage Earnlix, génère des commissions récurrentes et construis une rente digitale durable depuis l'Afrique.</p><span class="mod-tag" data-i18n="modules.c5.tag">Commissions récurrentes</span></div></div>
     </div>
   </div>
 </section>
@@ -646,9 +709,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </svg>
   <div class="wrap">
     <div class="sh c sr">
-      <span class="eyebrow">Témoignages</span>
-      <h2 id="testi-title">Ils ont commencé comme toi.<br><span class="grad">Aujourd'hui, ils témoignent.</span></h2>
-      <p style="margin-top:12px">Des membres du groupe qui sont passés à l'action et partagent leur parcours.</p>
+      <span class="eyebrow" data-i18n="nav.testimonials">Témoignages</span>
+      <h2 id="testi-title" data-i18n="testi.title">Ils ont commencé comme toi.<br><span class="grad">Aujourd'hui, ils témoignent.</span></h2>
+      <p style="margin-top:12px" data-i18n="testi.sub">Des membres du groupe qui sont passés à l'action et partagent leur parcours.</p>
     </div>
     <div class="testi-grid">
       <div class="glass testi-card d1">
@@ -661,10 +724,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
         </div>
-        <p class="testi-text">« Il y a huit mois, je ne connaissais rien au trading. Grâce au coaching quotidien du groupe, je gère aujourd'hui mon propre portefeuille et j'accompagne à mon tour les nouveaux membres. »</p>
+        <p class="testi-text" data-i18n="testi.c1.text">« Il y a huit mois, je ne connaissais rien au trading. Grâce au coaching quotidien du groupe, je gère aujourd'hui mon propre portefeuille et j'accompagne à mon tour les nouveaux membres. »</p>
         <div class="testi-foot">
           <img src="avatar-1.webp" alt="Portrait de Kouassi A." class="testi-avatar" width="900" height="900" loading="lazy">
-          <div><div class="testi-name">Kouassi A.</div><div class="testi-role">Abidjan · Trading Forex & Crypto</div></div>
+          <div><div class="testi-name">Kouassi A.</div><div class="testi-role" data-i18n="testi.c1.role">Abidjan · Trading Forex & Crypto</div></div>
         </div>
       </div>
       <div class="glass testi-card d2">
@@ -677,10 +740,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
         </div>
-        <p class="testi-text">« J'ai suivi les formations sur l'importation depuis la Chine et lancé ma boutique en ligne. Mes premières ventes sont arrivées en moins d'un mois, avec le soutien constant du groupe. »</p>
+        <p class="testi-text" data-i18n="testi.c2.text">« J'ai suivi les formations sur l'importation depuis la Chine et lancé ma boutique en ligne. Mes premières ventes sont arrivées en moins d'un mois, avec le soutien constant du groupe. »</p>
         <div class="testi-foot">
           <img src="avatar-2.webp" alt="Portrait de Fatou D." class="testi-avatar" width="900" height="900" loading="lazy">
-          <div><div class="testi-name">Fatou D.</div><div class="testi-role">Dakar · Importation & E-commerce</div></div>
+          <div><div class="testi-name">Fatou D.</div><div class="testi-role" data-i18n="testi.c2.role">Dakar · Importation & E-commerce</div></div>
         </div>
       </div>
       <div class="glass testi-card d3">
@@ -693,14 +756,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
           <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>
         </div>
-        <p class="testi-text">« Le mentorat quotidien m'a permis de comprendre le marketing d'affiliation Earnlix étape par étape. Je touche désormais des commissions récurrentes chaque mois. »</p>
+        <p class="testi-text" data-i18n="testi.c3.text">« Le mentorat quotidien m'a permis de comprendre le marketing d'affiliation Earnlix étape par étape. Je touche désormais des commissions récurrentes chaque mois. »</p>
         <div class="testi-foot">
           <img src="avatar-3.webp" alt="Portrait de Junior M." class="testi-avatar" width="900" height="900" loading="lazy">
-          <div><div class="testi-name">Junior M.</div><div class="testi-role">Douala · Affiliation Earnlix</div></div>
+          <div><div class="testi-name">Junior M.</div><div class="testi-role" data-i18n="testi.c3.role">Douala · Affiliation Earnlix</div></div>
         </div>
       </div>
     </div>
-    <p class="testi-note">Témoignages illustratifs de parcours types de membres. Contacte-nous si tu souhaites partager ton propre témoignage et ta photo pour cette section.</p>
+    <p class="testi-note" data-i18n="testi.note">Témoignages illustratifs de parcours types de membres. Contacte-nous si tu souhaites partager ton propre témoignage et ta photo pour cette section.</p>
   </div>
 </section>
 
@@ -711,24 +774,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <canvas id="net-canvas"></canvas>
   <div class="wrap community-inner">
     <div class="sh c sr">
-      <span class="eyebrow">Réseaux</span>
-      <h2 id="com-title">Rejoins-nous<br><span class="grad">partout</span></h2>
-      <p style="margin-top:12px">La communauté est active sur plusieurs plateformes. Reste connecté.</p>
+      <span class="eyebrow" data-i18n="community.eyebrow">Réseaux</span>
+      <h2 id="com-title" data-i18n="community.title">Rejoins-nous<br><span class="grad">partout</span></h2>
+      <p style="margin-top:12px" data-i18n="community.sub">La communauté est active sur plusieurs plateformes. Reste connecté.</p>
     </div>
     <div class="com-list">
       <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" class="com-item ci-wa d1" aria-label="Groupe WhatsApp VIP">
         <div class="com-logo"><svg><use href="#ico-wa"/></svg></div>
-        <div class="com-text"><div class="com-name">Groupe WhatsApp VIP</div><div class="com-desc">+1 000 membres · Coaching quotidien · Stratégies exclusives</div></div>
+        <div class="com-text"><div class="com-name" data-i18n="community.wa.name">Groupe WhatsApp VIP</div><div class="com-desc" data-i18n="community.wa.desc">+1 000 membres · Coaching quotidien · Stratégies exclusives</div></div>
         <div class="com-arr"><svg><use href="#ico-arr"/></svg></div>
       </a>
       <a href="https://www.tiktok.com/@earnlix_africa_digital" target="_blank" rel="noopener" class="com-item ci-tt d2" aria-label="TikTok Earnlix Africa">
         <div class="com-logo"><svg><use href="#ico-tt"/></svg></div>
-        <div class="com-text"><div class="com-name">TikTok — @earnlix_africa_digital</div><div class="com-desc">Astuces · Stratégies · Coulisses de la communauté</div></div>
+        <div class="com-text"><div class="com-name">TikTok — @earnlix_africa_digital</div><div class="com-desc" data-i18n="community.tt.desc">Astuces · Stratégies · Coulisses de la communauté</div></div>
         <div class="com-arr"><svg><use href="#ico-arr"/></svg></div>
       </a>
       <a href="https://www.facebook.com/profile.php?id=61594257608833" target="_blank" rel="noopener" class="com-item ci-fb d3" aria-label="Facebook Earnlix Africa">
         <div class="com-logo"><svg><use href="#ico-fb"/></svg></div>
-        <div class="com-text"><div class="com-name">Facebook — Earnlix Africa Community</div><div class="com-desc">Actualités · Formations · Témoignages de membres</div></div>
+        <div class="com-text"><div class="com-name">Facebook — Earnlix Africa Community</div><div class="com-desc" data-i18n="community.fb.desc">Actualités · Formations · Témoignages de membres</div></div>
         <div class="com-arr"><svg><use href="#ico-arr"/></svg></div>
       </a>
     </div>
@@ -741,33 +804,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="contact" class="sec" aria-labelledby="contact-title">
   <div class="wrap">
     <div class="sh c sr">
-      <span class="eyebrow">Contact</span>
-      <h2 id="contact-title">Une question <span class="grad">spécifique ?</span></h2>
-      <p style="margin-top:12px">Écris-nous directement — on te répond sur WhatsApp.</p>
+      <span class="eyebrow" data-i18n="nav.contact">Contact</span>
+      <h2 id="contact-title" data-i18n="contact.title">Une question <span class="grad">spécifique ?</span></h2>
+      <p style="margin-top:12px" data-i18n="contact.sub">Écris-nous directement — on te répond sur WhatsApp.</p>
     </div>
     <form class="contact-wrap sr d1" id="contact-form" novalidate>
       <div class="field-row">
         <div class="field">
-          <label for="cf-name">Nom</label>
-          <input type="text" id="cf-name" name="name" placeholder="Ton nom" autocomplete="name" required>
+          <label for="cf-name" data-i18n="contact.label_name">Nom</label>
+          <input type="text" id="cf-name" name="name" placeholder="Ton nom" data-i18n-ph="contact.placeholder_name" autocomplete="name" required>
         </div>
         <div class="field">
-          <label for="cf-subject">Sujet</label>
+          <label for="cf-subject" data-i18n="contact.label_subject">Sujet</label>
           <select id="cf-subject" name="subject">
-            <option value="Question générale">Question générale</option>
-            <option value="Formations">Formations</option>
-            <option value="Partenariat">Partenariat</option>
-            <option value="Support technique">Support technique</option>
-            <option value="Autre">Autre</option>
+            <option value="general" data-i18n="contact.opt_general">Question générale</option>
+            <option value="training" data-i18n="contact.opt_training">Formations</option>
+            <option value="partnership" data-i18n="contact.opt_partnership">Partenariat</option>
+            <option value="support" data-i18n="contact.opt_support">Support technique</option>
+            <option value="other" data-i18n="contact.opt_other">Autre</option>
           </select>
         </div>
       </div>
       <div class="field">
-        <label for="cf-message">Message</label>
-        <textarea id="cf-message" name="message" placeholder="Écris ton message ici..." required></textarea>
+        <label for="cf-message" data-i18n="contact.label_message">Message</label>
+        <textarea id="cf-message" name="message" placeholder="Écris ton message ici..." data-i18n-ph="contact.placeholder_message" required></textarea>
       </div>
       <button type="submit" class="btn btn-p" style="width:100%;justify-content:center">
-        <svg><use href="#ico-wa"/></svg> Envoyer sur WhatsApp
+        <svg><use href="#ico-wa"/></svg> <span data-i18n="contact.submit">Envoyer sur WhatsApp</span>
       </button>
       <p id="contact-status" role="status" aria-live="polite"></p>
     </form>
@@ -780,21 +843,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="faq" class="sec" aria-labelledby="faq-title">
   <div class="wrap">
     <div class="sh c sr">
-      <span class="eyebrow">FAQ</span>
-      <h2 id="faq-title">Questions<br><span class="grad">fréquentes</span></h2>
+      <span class="eyebrow" data-i18n="nav.faq">FAQ</span>
+      <h2 id="faq-title" data-i18n="faq.title">Questions<br><span class="grad">fréquentes</span></h2>
     </div>
     <div class="faq-wrap">
       <div class="faq-card glass sr d1">
-        <button class="faq-btn" aria-expanded="false" aria-controls="fa1"><span>Comment rejoindre le groupe WhatsApp ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
-        <div class="faq-body" id="fa1"><div class="faq-inner">Clique sur l'un des boutons "Rejoindre le Groupe WhatsApp" présents sur cette page. Tu seras immédiatement redirigé vers notre groupe où tu accèderas aux ressources et au coaching quotidien.</div></div>
+        <button class="faq-btn" aria-expanded="false" aria-controls="fa1"><span data-i18n="faq.q1">Comment rejoindre le groupe WhatsApp ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
+        <div class="faq-body" id="fa1"><div class="faq-inner" data-i18n="faq.a1">Clique sur l'un des boutons "Rejoindre le Groupe WhatsApp" présents sur cette page. Tu seras immédiatement redirigé vers notre groupe où tu accèderas aux ressources et au coaching quotidien.</div></div>
       </div>
       <div class="faq-card glass sr d2">
-        <button class="faq-btn" aria-expanded="false" aria-controls="fa2"><span>Faut-il payer pour s'inscrire sur Earnlix ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
-        <div class="faq-body" id="fa2"><div class="faq-inner">L'inscription sur Earnlix Digital est gratuite. Tu peux créer ton compte et commencer ton parcours affilié sans frais initiaux. Des offres premium existent pour aller plus loin, mais rien n'est obligatoire pour démarrer.</div></div>
+        <button class="faq-btn" aria-expanded="false" aria-controls="fa2"><span data-i18n="faq.q2">Faut-il payer pour s'inscrire sur Earnlix ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
+        <div class="faq-body" id="fa2"><div class="faq-inner" data-i18n="faq.a2">L'inscription sur Earnlix Digital est gratuite. Tu peux créer ton compte et commencer ton parcours affilié sans frais initiaux. Des offres premium existent pour aller plus loin, mais rien n'est obligatoire pour démarrer.</div></div>
       </div>
       <div class="faq-card glass sr d3">
-        <button class="faq-btn" aria-expanded="false" aria-controls="fa3"><span>Suis-je accompagné si je suis totalement débutant ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
-        <div class="faq-body" id="fa3"><div class="faq-inner">Absolument. Earnlix Africa Community est conçue pour les débutants. Nos contenus partent de zéro, notre équipe répond dans le groupe, et les sessions live sont faites pour ceux qui commencent dans le digital.</div></div>
+        <button class="faq-btn" aria-expanded="false" aria-controls="fa3"><span data-i18n="faq.q3">Suis-je accompagné si je suis totalement débutant ?</span><span class="faq-ico"><svg><use href="#ico-chev"/></svg></span></button>
+        <div class="faq-body" id="fa3"><div class="faq-inner" data-i18n="faq.a3">Absolument. Earnlix Africa Community est conçue pour les débutants. Nos contenus partent de zéro, notre équipe répond dans le groupe, et les sessions live sont faites pour ceux qui commencent dans le digital.</div></div>
       </div>
     </div>
   </div>
@@ -804,17 +867,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section id="final-cta">
   <div class="wrap">
     <div class="glass cta-panel sr">
-      <h2>Prêt à passer à l'action ?</h2>
-      <p>Rejoins plus de 1 000 membres qui apprennent, échangent et génèrent leurs premiers revenus digitaux chaque semaine.</p>
+      <h2 data-i18n="cta.title">Prêt à passer à l'action ?</h2>
+      <p data-i18n="cta.sub">Rejoins plus de 1 000 membres qui apprennent, échangent et génèrent leurs premiers revenus digitaux chaque semaine.</p>
       <div class="cta-btns">
         <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" class="btn btn-p pulse" aria-label="Rejoindre le groupe WhatsApp">
-          <svg><use href="#ico-wa"/></svg> Rejoindre le Groupe WhatsApp
+          <svg><use href="#ico-wa"/></svg> <span data-i18n="btn.whatsapp">Rejoindre le Groupe WhatsApp</span>
         </a>
         <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" class="btn btn-o" aria-label="S'inscrire sur Earnlix">
-          S'inscrire sur Earnlix <svg><use href="#ico-arr"/></svg>
+          <span data-i18n="btn.earnlix">S'inscrire sur Earnlix</span> <svg><use href="#ico-arr"/></svg>
         </a>
       </div>
-      <p class="cta-note">Inscription gratuite · Sans engagement · Accompagnement dès le premier jour</p>
+      <p class="cta-note" data-i18n="cta.note">Inscription gratuite · Sans engagement · Accompagnement dès le premier jour</p>
     </div>
   </div>
 </section>
@@ -828,9 +891,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="ft-brand"><span class="ft-name">Earnlix Africa</span><span class="ft-powered">Powered by Earnlix Digital</span></div>
       </div>
       <nav aria-label="Footer"><div class="ft-nav">
-        <a href="#hero">Accueil</a><a href="#about">À Propos</a><a href="#how">Étapes</a><a href="#modules">Formations</a><a href="#testimonials">Témoignages</a><a href="#contact">Contact</a><a href="#faq">FAQ</a>
+        <a href="#hero" data-i18n="footer.home">Accueil</a><a href="#showreel" data-i18n="nav.showreel">Vidéo</a><a href="#about" data-i18n="nav.about">À Propos</a><a href="#how" data-i18n="nav.how">Étapes</a><a href="#modules" data-i18n="nav.modules">Formations</a><a href="#testimonials" data-i18n="nav.testimonials">Témoignages</a><a href="#contact" data-i18n="nav.contact">Contact</a><a href="#faq" data-i18n="nav.faq">FAQ</a>
         <a href="https://earnlixdigital.com/register/adopomarie" target="_blank" rel="noopener" style="color:var(--c)">S'inscrire</a>
-        <a href="#">Mentions légales</a>
+        <a href="#" data-i18n="footer.legal">Mentions légales</a>
       </div></nav>
       <div class="ft-icons" aria-label="Réseaux sociaux">
         <a href="https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu" target="_blank" rel="noopener" class="ft-ico" aria-label="WhatsApp"><svg><use href="#ico-wa"/></svg></a>
@@ -839,8 +902,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       </div>
     </div>
     <div class="ft-bottom">
-      <p class="ft-copy">© 2026 EARNLIX Africa × Earnlix Digital. Tous droits réservés.</p>
-      <p class="ft-disc">Les résultats varient selon l'engagement de chaque membre.</p>
+      <p class="ft-copy" data-i18n="footer.copy">© 2026 EARNLIX Africa × Earnlix Digital. Tous droits réservés.</p>
+      <p class="ft-disc" data-i18n="footer.disclaimer">Les résultats varient selon l'engagement de chaque membre.</p>
     </div>
   </div>
 </footer>
@@ -855,6 +918,267 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
+const translations = {
+fr: {
+"nav.showreel":"Vidéo","nav.about":"À Propos","nav.how":"Étapes","nav.services":"Services","nav.modules":"Formations","nav.testimonials":"Témoignages","nav.community":"Communauté","nav.contact":"Contact","nav.faq":"FAQ","nav.cta":"S'inscrire","mobile.cta":"S'inscrire sur Earnlix →",
+"meta.title":"Earnlix Africa — Maîtrise le Digital & Génère des Revenus","meta.description":"La première communauté africaine dédiée au marketing digital, à l'IA, au trading et à l'e-commerce via Earnlix Digital.",
+"hero.badge":"Communauté Africaine · +1 000 membres actifs",
+"hero.lines":["Maîtrise le Digital.\nGénère des Revenus.","Passe de la Théorie\nà l'Action.","Rejoins la Communauté\nAfricaine #1."],
+"hero.sub":"La première communauté africaine dédiée au marketing d'affiliation Earnlix, à l'IA, au Trading et au E-commerce. Passe de la théorie à l'action.",
+"btn.whatsapp":"Rejoindre le Groupe WhatsApp","btn.earnlix":"S'inscrire sur Earnlix",
+"hero.stat1":"Membres actifs","hero.stat2":"Satisfaction","hero.stat3":"Pratique",
+"showreel.eyebrow":"En vidéo","showreel.title":"Découvre <span class=\"grad\">Earnlix Africa</span>","showreel.sub":"Deux vidéos pour comprendre en quelques secondes ce que la communauté peut t'apporter.","showreel.label1":"Présentation","showreel.label2":"Motion Design",
+"about.eyebrow":"Mission",
+"about.p1":"Notre mission est de rendre le business digital concret et accessible à tout africain motivé. Pas de promesses vagues — des méthodes testées sur le terrain.",
+"about.p2":"Qu'il s'agisse de générer un revenu complémentaire ou de se reconvertir entièrement dans le digital, nous accompagnons chaque membre de l'idée jusqu'aux premiers résultats.",
+"about.cta":"S'inscrire gratuitement",
+"about.card1.title":"Formation Pratique","about.card1.desc":"Guides pas-à-pas et tutoriels applicables immédiatement. Zéro théorie inutile.",
+"about.card2.title":"Entraide & Mentorat","about.card2.desc":"Suivi quotidien avec des membres expérimentés disponibles pour toutes tes questions.",
+"about.card3.title":"Monétisation & Affiliation","about.card3.desc":"Commissions récurrentes via Earnlix Digital pour transformer ton réseau en revenus.",
+"how.title":"Comment <span class=\"grad\">ça marche</span>","how.sub":"Quatre étapes simples pour passer de spectateur à acteur du digital.",
+"how.s1.title":"Rejoins le groupe WhatsApp","how.s1.desc":"Accès gratuit et immédiat à la communauté, au coaching quotidien et aux ressources.",
+"how.s2.title":"Inscris-toi sur Earnlix","how.s2.desc":"Crée ton compte Earnlix Digital gratuitement pour activer ton parcours d'affiliation.",
+"how.s3.title":"Suis les formations","how.s3.desc":"Trading, e-commerce, IA, marketing vidéo — apprends à ton rythme avec le mentorat du groupe.",
+"how.s4.title":"Génère tes revenus","how.s4.desc":"Applique ce que tu apprends, touche tes premières commissions et deviens mentor à ton tour.",
+"services.eyebrow":"Groupe WhatsApp","services.title":"Ce que tu trouves<br><span class=\"grad\">dans le groupe</span>","services.sub":"Un espace structuré où l'information pratique circule chaque jour.",
+"services.i1.title":"Live Coaching & Sessions Q/R","services.i1.desc":"Des sessions en direct régulières pour débloquer tes situations et accélérer ta progression avec des experts disponibles en temps réel.",
+"services.i2.title":"Stratégies d'Affiliation prêtes à l'emploi","services.i2.desc":"Scripts de vente, visuels optimisés, messages types — tout ce qu'il faut pour promouvoir Earnlix efficacement dès le premier jour.",
+"services.i3.title":"Alertes & Opportunités en avant-première","services.i3.desc":"Sois informé en premier des nouvelles opportunités, promotions et tendances du digital avant la masse.",
+"services.i4.title":"Réseau d'Entraide","services.i4.desc":"Un vrai réseau de passionnés du web africain. Partage, collabore et grandis aux côtés de personnes qui comprennent tes ambitions.",
+"modules.eyebrow":"Contenus & Formations","modules.title":"Nos modules<br><span class=\"grad\">de formation</span>","modules.sub":"Pensés pour l'Afrique, adaptés à ton niveau, orientés vers la pratique immédiate.",
+"modules.c1.title":"Trading Forex & Crypto","modules.c1.desc":"Initiation aux marchés financiers, gestion du risque et stratégies pour débutants et intermédiaires.","modules.c1.tag":"Débutant → Avancé",
+"modules.c2.title":"Importation Chine & E-commerce","modules.c2.desc":"Achète via Alibaba au prix d'usine et revends en Afrique avec une marge confortable.","modules.c2.tag":"Business réel",
+"modules.c3.title":"IA & Productivité","modules.c3.desc":"ChatGPT, Midjourney, automatisation. Multiplie ta productivité et tes revenus grâce aux outils IA.","modules.c3.tag":"Futur du travail",
+"modules.c4.title":"Marketing TikTok & YouTube","modules.c4.desc":"Crée du contenu viral, développe une audience et monétise ta visibilité sur les plateformes vidéo.","modules.c4.tag":"Visibilité & Revenus",
+"modules.c5.title":"Marketing d'Affiliation Earnlix","modules.c5.desc":"Le cœur de la communauté. Maîtrise le parrainage Earnlix, génère des commissions récurrentes et construis une rente digitale durable depuis l'Afrique.","modules.c5.tag":"Commissions récurrentes",
+"testi.title":"Ils ont commencé comme toi.<br><span class=\"grad\">Aujourd'hui, ils témoignent.</span>","testi.sub":"Des membres du groupe qui sont passés à l'action et partagent leur parcours.",
+"testi.c1.text":"« Il y a huit mois, je ne connaissais rien au trading. Grâce au coaching quotidien du groupe, je gère aujourd'hui mon propre portefeuille et j'accompagne à mon tour les nouveaux membres. »","testi.c1.role":"Abidjan · Trading Forex & Crypto",
+"testi.c2.text":"« J'ai suivi les formations sur l'importation depuis la Chine et lancé ma boutique en ligne. Mes premières ventes sont arrivées en moins d'un mois, avec le soutien constant du groupe. »","testi.c2.role":"Dakar · Importation & E-commerce",
+"testi.c3.text":"« Le mentorat quotidien m'a permis de comprendre le marketing d'affiliation Earnlix étape par étape. Je touche désormais des commissions récurrentes chaque mois. »","testi.c3.role":"Douala · Affiliation Earnlix",
+"testi.note":"Témoignages illustratifs de parcours types de membres. Contacte-nous si tu souhaites partager ton propre témoignage et ta photo pour cette section.",
+"community.eyebrow":"Réseaux","community.title":"Rejoins-nous<br><span class=\"grad\">partout</span>","community.sub":"La communauté est active sur plusieurs plateformes. Reste connecté.",
+"community.wa.name":"Groupe WhatsApp VIP","community.wa.desc":"+1 000 membres · Coaching quotidien · Stratégies exclusives",
+"community.tt.desc":"Astuces · Stratégies · Coulisses de la communauté",
+"community.fb.desc":"Actualités · Formations · Témoignages de membres",
+"contact.title":"Une question <span class=\"grad\">spécifique ?</span>","contact.sub":"Écris-nous directement — on te répond sur WhatsApp.",
+"contact.label_name":"Nom","contact.placeholder_name":"Ton nom","contact.label_subject":"Sujet",
+"contact.opt_general":"Question générale","contact.opt_training":"Formations","contact.opt_partnership":"Partenariat","contact.opt_support":"Support technique","contact.opt_other":"Autre",
+"contact.label_message":"Message","contact.placeholder_message":"Écris ton message ici...","contact.submit":"Envoyer sur WhatsApp",
+"contact.wa_greeting":"Bonjour Earnlix Africa,","contact.wa_name":"Nom","contact.wa_subject":"Sujet","contact.wa_message":"Message",
+"contact.status_direct":"Ton message est prêt, tu es redirigé vers WhatsApp.","contact.status_copied":"Message copié ! Colle-le dans le groupe WhatsApp qui vient de s'ouvrir.","contact.status_copy_fallback":"Copie ton message ci-dessus et colle-le dans le groupe WhatsApp qui vient de s'ouvrir.",
+"faq.title":"Questions<br><span class=\"grad\">fréquentes</span>",
+"faq.q1":"Comment rejoindre le groupe WhatsApp ?","faq.a1":"Clique sur l'un des boutons \"Rejoindre le Groupe WhatsApp\" présents sur cette page. Tu seras immédiatement redirigé vers notre groupe où tu accèderas aux ressources et au coaching quotidien.",
+"faq.q2":"Faut-il payer pour s'inscrire sur Earnlix ?","faq.a2":"L'inscription sur Earnlix Digital est gratuite. Tu peux créer ton compte et commencer ton parcours affilié sans frais initiaux. Des offres premium existent pour aller plus loin, mais rien n'est obligatoire pour démarrer.",
+"faq.q3":"Suis-je accompagné si je suis totalement débutant ?","faq.a3":"Absolument. Earnlix Africa Community est conçue pour les débutants. Nos contenus partent de zéro, notre équipe répond dans le groupe, et les sessions live sont faites pour ceux qui commencent dans le digital.",
+"cta.title":"Prêt à passer à l'action ?","cta.sub":"Rejoins plus de 1 000 membres qui apprennent, échangent et génèrent leurs premiers revenus digitaux chaque semaine.","cta.note":"Inscription gratuite · Sans engagement · Accompagnement dès le premier jour",
+"footer.home":"Accueil","footer.legal":"Mentions légales","footer.copy":"© 2026 EARNLIX Africa × Earnlix Digital. Tous droits réservés.","footer.disclaimer":"Les résultats varient selon l'engagement de chaque membre."
+},
+en: {
+"nav.showreel":"Video","nav.about":"About","nav.how":"How It Works","nav.services":"Services","nav.modules":"Training","nav.testimonials":"Testimonials","nav.community":"Community","nav.contact":"Contact","nav.faq":"FAQ","nav.cta":"Sign Up","mobile.cta":"Sign up on Earnlix →",
+"meta.title":"Earnlix Africa — Master the Digital World & Generate Income","meta.description":"The first African community dedicated to digital marketing, AI, trading and e-commerce via Earnlix Digital.",
+"hero.badge":"African Community · +1,000 active members",
+"hero.lines":["Master the Digital World.\nGenerate Real Income.","Move From Theory\nTo Action.","Join Africa's #1\nCommunity."],
+"hero.sub":"The first African community dedicated to Earnlix affiliate marketing, AI, Trading and E-commerce. Move from theory to action.",
+"btn.whatsapp":"Join the WhatsApp Group","btn.earnlix":"Sign up on Earnlix",
+"hero.stat1":"Active members","hero.stat2":"Satisfaction","hero.stat3":"Hands-on",
+"showreel.eyebrow":"On Video","showreel.title":"Discover <span class=\"grad\">Earnlix Africa</span>","showreel.sub":"Two videos to understand in a few seconds what the community can bring you.","showreel.label1":"Overview","showreel.label2":"Motion Design",
+"about.eyebrow":"Mission",
+"about.p1":"Our mission is to make digital business concrete and accessible to every motivated African. No vague promises — methods tested in the field.",
+"about.p2":"Whether it's about generating extra income or fully transitioning into digital work, we support every member from the idea all the way to their first results.",
+"about.cta":"Sign up for free",
+"about.card1.title":"Hands-On Training","about.card1.desc":"Step-by-step guides and tutorials you can apply immediately. Zero useless theory.",
+"about.card2.title":"Mutual Support & Mentorship","about.card2.desc":"Daily follow-up with experienced members available for all your questions.",
+"about.card3.title":"Monetization & Affiliation","about.card3.desc":"Recurring commissions via Earnlix Digital to turn your network into income.",
+"how.title":"How <span class=\"grad\">it works</span>","how.sub":"Four simple steps to go from spectator to digital doer.",
+"how.s1.title":"Join the WhatsApp group","how.s1.desc":"Free, instant access to the community, daily coaching and resources.",
+"how.s2.title":"Sign up on Earnlix","how.s2.desc":"Create your Earnlix Digital account for free to activate your affiliate journey.",
+"how.s3.title":"Follow the training","how.s3.desc":"Trading, e-commerce, AI, video marketing — learn at your own pace with the group's mentorship.",
+"how.s4.title":"Generate your income","how.s4.desc":"Apply what you learn, earn your first commissions, and become a mentor yourself.",
+"services.eyebrow":"WhatsApp Group","services.title":"What you'll find<br><span class=\"grad\">in the group</span>","services.sub":"A structured space where practical information flows every day.",
+"services.i1.title":"Live Coaching & Q&A Sessions","services.i1.desc":"Regular live sessions to unblock your situations and speed up your progress with experts available in real time.",
+"services.i2.title":"Ready-to-Use Affiliate Strategies","services.i2.desc":"Sales scripts, optimized visuals, template messages — everything you need to promote Earnlix effectively from day one.",
+"services.i3.title":"Early Alerts & Opportunities","services.i3.desc":"Be the first to know about new opportunities, promotions and digital trends before everyone else.",
+"services.i4.title":"Support Network","services.i4.desc":"A real network of African web enthusiasts. Share, collaborate and grow alongside people who understand your ambitions.",
+"modules.eyebrow":"Content & Training","modules.title":"Our training<br><span class=\"grad\">modules</span>","modules.sub":"Designed for Africa, adapted to your level, focused on immediate practice.",
+"modules.c1.title":"Forex & Crypto Trading","modules.c1.desc":"Introduction to financial markets, risk management and strategies for beginners and intermediates.","modules.c1.tag":"Beginner → Advanced",
+"modules.c2.title":"China Import & E-commerce","modules.c2.desc":"Buy through Alibaba at factory prices and resell in Africa with a comfortable margin.","modules.c2.tag":"Real Business",
+"modules.c3.title":"AI & Productivity","modules.c3.desc":"ChatGPT, Midjourney, automation. Multiply your productivity and income with AI tools.","modules.c3.tag":"Future of Work",
+"modules.c4.title":"TikTok & YouTube Marketing","modules.c4.desc":"Create viral content, grow an audience and monetize your visibility on video platforms.","modules.c4.tag":"Visibility & Income",
+"modules.c5.title":"Earnlix Affiliate Marketing","modules.c5.desc":"The heart of the community. Master Earnlix referrals, generate recurring commissions and build a lasting digital income from Africa.","modules.c5.tag":"Recurring Commissions",
+"testi.title":"They started just like you.<br><span class=\"grad\">Today, they share their story.</span>","testi.sub":"Group members who took action and share their journey.",
+"testi.c1.text":"\"Eight months ago I knew nothing about trading. Thanks to the group's daily coaching, I now manage my own portfolio and mentor new members in turn.\"","testi.c1.role":"Abidjan · Forex & Crypto Trading",
+"testi.c2.text":"\"I followed the training on importing from China and launched my online store. My first sales came in less than a month, with the group's constant support.\"","testi.c2.role":"Dakar · Import & E-commerce",
+"testi.c3.text":"\"Daily mentorship helped me understand Earnlix affiliate marketing step by step. I now earn recurring commissions every month.\"","testi.c3.role":"Douala · Earnlix Affiliation",
+"testi.note":"Illustrative testimonials reflecting typical member journeys. Contact us if you'd like to share your own testimonial and photo for this section.",
+"community.eyebrow":"Networks","community.title":"Join us<br><span class=\"grad\">everywhere</span>","community.sub":"The community is active on several platforms. Stay connected.",
+"community.wa.name":"VIP WhatsApp Group","community.wa.desc":"+1,000 members · Daily coaching · Exclusive strategies",
+"community.tt.desc":"Tips · Strategies · Behind the scenes of the community",
+"community.fb.desc":"News · Training · Member testimonials",
+"contact.title":"A specific <span class=\"grad\">question?</span>","contact.sub":"Write to us directly — we'll reply on WhatsApp.",
+"contact.label_name":"Name","contact.placeholder_name":"Your name","contact.label_subject":"Subject",
+"contact.opt_general":"General question","contact.opt_training":"Training","contact.opt_partnership":"Partnership","contact.opt_support":"Technical support","contact.opt_other":"Other",
+"contact.label_message":"Message","contact.placeholder_message":"Write your message here...","contact.submit":"Send on WhatsApp",
+"contact.wa_greeting":"Hello Earnlix Africa,","contact.wa_name":"Name","contact.wa_subject":"Subject","contact.wa_message":"Message",
+"contact.status_direct":"Your message is ready, redirecting you to WhatsApp.","contact.status_copied":"Message copied! Paste it into the WhatsApp group that just opened.","contact.status_copy_fallback":"Copy your message above and paste it into the WhatsApp group that just opened.",
+"faq.title":"Frequently<br><span class=\"grad\">asked questions</span>",
+"faq.q1":"How do I join the WhatsApp group?","faq.a1":"Click any \"Join the WhatsApp Group\" button on this page. You'll be redirected instantly to our group where you'll get access to resources and daily coaching.",
+"faq.q2":"Do I have to pay to sign up on Earnlix?","faq.a2":"Signing up on Earnlix Digital is free. You can create your account and start your affiliate journey with no upfront cost. Premium offers exist to go further, but nothing is required to get started.",
+"faq.q3":"Will I be supported if I'm a total beginner?","faq.a3":"Absolutely. Earnlix Africa Community is designed for beginners. Our content starts from zero, our team answers questions in the group, and live sessions are made for people just starting out in digital.",
+"cta.title":"Ready to take action?","cta.sub":"Join over 1,000 members who learn, connect and generate their first digital income every week.","cta.note":"Free sign-up · No commitment · Support from day one",
+"footer.home":"Home","footer.legal":"Legal Notice","footer.copy":"© 2026 EARNLIX Africa × Earnlix Digital. All rights reserved.","footer.disclaimer":"Results vary based on each member's level of engagement."
+},
+pt: {
+"nav.showreel":"Vídeo","nav.about":"Sobre","nav.how":"Como Funciona","nav.services":"Serviços","nav.modules":"Formações","nav.testimonials":"Depoimentos","nav.community":"Comunidade","nav.contact":"Contato","nav.faq":"FAQ","nav.cta":"Inscrever-se","mobile.cta":"Inscrever-se na Earnlix →",
+"meta.title":"Earnlix Africa — Domine o Digital & Gere Renda","meta.description":"A primeira comunidade africana dedicada ao marketing digital, IA, trading e e-commerce através da Earnlix Digital.",
+"hero.badge":"Comunidade Africana · +1.000 membros ativos",
+"hero.lines":["Domine o Digital.\nGere Renda Real.","Saia da Teoria\nPara a Ação.","Junte-se à Comunidade\nAfricana Nº 1."],
+"hero.sub":"A primeira comunidade africana dedicada ao marketing de afiliados da Earnlix, IA, Trading e E-commerce. Saia da teoria e parta para a ação.",
+"btn.whatsapp":"Entrar no Grupo do WhatsApp","btn.earnlix":"Inscrever-se na Earnlix",
+"hero.stat1":"Membros ativos","hero.stat2":"Satisfação","hero.stat3":"Prático",
+"showreel.eyebrow":"Em vídeo","showreel.title":"Descubra a <span class=\"grad\">Earnlix Africa</span>","showreel.sub":"Dois vídeos para entender em segundos o que a comunidade pode te oferecer.","showreel.label1":"Apresentação","showreel.label2":"Motion Design",
+"about.eyebrow":"Missão",
+"about.p1":"Nossa missão é tornar o negócio digital concreto e acessível a todo africano motivado. Sem promessas vagas — métodos testados na prática.",
+"about.p2":"Seja para gerar uma renda extra ou se reconverter totalmente para o digital, acompanhamos cada membro desde a ideia até os primeiros resultados.",
+"about.cta":"Inscreva-se gratuitamente",
+"about.card1.title":"Formação Prática","about.card1.desc":"Guias passo a passo e tutoriais aplicáveis imediatamente. Zero teoria inútil.",
+"about.card2.title":"Ajuda Mútua & Mentoria","about.card2.desc":"Acompanhamento diário com membros experientes disponíveis para todas as suas dúvidas.",
+"about.card3.title":"Monetização & Afiliação","about.card3.desc":"Comissões recorrentes via Earnlix Digital para transformar sua rede em renda.",
+"how.title":"Como <span class=\"grad\">funciona</span>","how.sub":"Quatro passos simples para deixar de ser espectador e se tornar protagonista do digital.",
+"how.s1.title":"Entre no grupo do WhatsApp","how.s1.desc":"Acesso gratuito e imediato à comunidade, ao coaching diário e aos recursos.",
+"how.s2.title":"Inscreva-se na Earnlix","how.s2.desc":"Crie sua conta Earnlix Digital gratuitamente para ativar sua jornada de afiliado.",
+"how.s3.title":"Siga as formações","how.s3.desc":"Trading, e-commerce, IA, marketing de vídeo — aprenda no seu ritmo com a mentoria do grupo.",
+"how.s4.title":"Gere sua renda","how.s4.desc":"Aplique o que aprende, receba suas primeiras comissões e torne-se mentor também.",
+"services.eyebrow":"Grupo do WhatsApp","services.title":"O que você encontra<br><span class=\"grad\">no grupo</span>","services.sub":"Um espaço estruturado onde a informação prática circula todos os dias.",
+"services.i1.title":"Coaching ao Vivo & Sessões de Perguntas","services.i1.desc":"Sessões ao vivo regulares para desbloquear suas situações e acelerar seu progresso com especialistas disponíveis em tempo real.",
+"services.i2.title":"Estratégias de Afiliação Prontas para Usar","services.i2.desc":"Scripts de vendas, visuais otimizados, mensagens modelo — tudo o que você precisa para promover a Earnlix com eficácia desde o primeiro dia.",
+"services.i3.title":"Alertas & Oportunidades em Primeira Mão","services.i3.desc":"Fique sabendo em primeira mão sobre novas oportunidades, promoções e tendências digitais antes de todo mundo.",
+"services.i4.title":"Rede de Apoio Mútuo","services.i4.desc":"Uma verdadeira rede de apaixonados pela web africana. Compartilhe, colabore e cresça ao lado de pessoas que entendem suas ambições.",
+"modules.eyebrow":"Conteúdos & Formações","modules.title":"Nossos módulos<br><span class=\"grad\">de formação</span>","modules.sub":"Pensados para a África, adaptados ao seu nível, voltados para a prática imediata.",
+"modules.c1.title":"Trading Forex & Cripto","modules.c1.desc":"Introdução aos mercados financeiros, gestão de risco e estratégias para iniciantes e intermediários.","modules.c1.tag":"Iniciante → Avançado",
+"modules.c2.title":"Importação da China & E-commerce","modules.c2.desc":"Compre pela Alibaba a preço de fábrica e revenda na África com uma margem confortável.","modules.c2.tag":"Negócio Real",
+"modules.c3.title":"IA & Produtividade","modules.c3.desc":"ChatGPT, Midjourney, automação. Multiplique sua produtividade e renda com ferramentas de IA.","modules.c3.tag":"Futuro do Trabalho",
+"modules.c4.title":"Marketing no TikTok & YouTube","modules.c4.desc":"Crie conteúdo viral, desenvolva uma audiência e monetize sua visibilidade nas plataformas de vídeo.","modules.c4.tag":"Visibilidade & Renda",
+"modules.c5.title":"Marketing de Afiliados Earnlix","modules.c5.desc":"O coração da comunidade. Domine a indicação Earnlix, gere comissões recorrentes e construa uma renda digital duradoura a partir da África.","modules.c5.tag":"Comissões Recorrentes",
+"testi.title":"Eles começaram como você.<br><span class=\"grad\">Hoje, eles contam sua história.</span>","testi.sub":"Membros do grupo que passaram à ação e compartilham sua jornada.",
+"testi.c1.text":"«Há oito meses eu não sabia nada sobre trading. Graças ao coaching diário do grupo, hoje administro minha própria carteira e oriento novos membros.»","testi.c1.role":"Abidjan · Trading Forex & Cripto",
+"testi.c2.text":"«Fiz as formações sobre importação da China e lancei minha loja online. Minhas primeiras vendas chegaram em menos de um mês, com o apoio constante do grupo.»","testi.c2.role":"Dakar · Importação & E-commerce",
+"testi.c3.text":"«A mentoria diária me ajudou a entender o marketing de afiliados da Earnlix passo a passo. Agora recebo comissões recorrentes todo mês.»","testi.c3.role":"Douala · Afiliação Earnlix",
+"testi.note":"Depoimentos ilustrativos de jornadas típicas de membros. Fale conosco se quiser compartilhar seu próprio depoimento e foto para esta seção.",
+"community.eyebrow":"Redes","community.title":"Junte-se a nós<br><span class=\"grad\">em todo lugar</span>","community.sub":"A comunidade está ativa em várias plataformas. Fique conectado.",
+"community.wa.name":"Grupo VIP do WhatsApp","community.wa.desc":"+1.000 membros · Coaching diário · Estratégias exclusivas",
+"community.tt.desc":"Dicas · Estratégias · Bastidores da comunidade",
+"community.fb.desc":"Notícias · Formações · Depoimentos de membros",
+"contact.title":"Uma pergunta <span class=\"grad\">específica?</span>","contact.sub":"Escreva diretamente para nós — respondemos pelo WhatsApp.",
+"contact.label_name":"Nome","contact.placeholder_name":"Seu nome","contact.label_subject":"Assunto",
+"contact.opt_general":"Pergunta geral","contact.opt_training":"Formações","contact.opt_partnership":"Parceria","contact.opt_support":"Suporte técnico","contact.opt_other":"Outro",
+"contact.label_message":"Mensagem","contact.placeholder_message":"Escreva sua mensagem aqui...","contact.submit":"Enviar pelo WhatsApp",
+"contact.wa_greeting":"Olá Earnlix Africa,","contact.wa_name":"Nome","contact.wa_subject":"Assunto","contact.wa_message":"Mensagem",
+"contact.status_direct":"Sua mensagem está pronta, você será redirecionado ao WhatsApp.","contact.status_copied":"Mensagem copiada! Cole-a no grupo do WhatsApp que acabou de abrir.","contact.status_copy_fallback":"Copie sua mensagem acima e cole-a no grupo do WhatsApp que acabou de abrir.",
+"faq.title":"Perguntas<br><span class=\"grad\">frequentes</span>",
+"faq.q1":"Como entrar no grupo do WhatsApp?","faq.a1":"Clique em qualquer botão \"Entrar no Grupo do WhatsApp\" nesta página. Você será redirecionado imediatamente ao nosso grupo, onde terá acesso aos recursos e ao coaching diário.",
+"faq.q2":"É preciso pagar para se inscrever na Earnlix?","faq.a2":"A inscrição na Earnlix Digital é gratuita. Você pode criar sua conta e começar sua jornada de afiliado sem custos iniciais. Existem ofertas premium para ir mais longe, mas nada é obrigatório para começar.",
+"faq.q3":"Serei acompanhado se for totalmente iniciante?","faq.a3":"Com certeza. A Earnlix Africa Community foi criada para iniciantes. Nossos conteúdos partem do zero, nossa equipe responde no grupo, e as sessões ao vivo são feitas para quem está começando no digital.",
+"cta.title":"Pronto para agir?","cta.sub":"Junte-se a mais de 1.000 membros que aprendem, trocam experiências e geram sua primeira renda digital toda semana.","cta.note":"Inscrição gratuita · Sem compromisso · Acompanhamento desde o primeiro dia",
+"footer.home":"Início","footer.legal":"Aviso Legal","footer.copy":"© 2026 EARNLIX Africa × Earnlix Digital. Todos os direitos reservados.","footer.disclaimer":"Os resultados variam conforme o engajamento de cada membro."
+},
+zh: {
+"nav.showreel":"视频","nav.about":"关于我们","nav.how":"运作方式","nav.services":"服务","nav.modules":"培训课程","nav.testimonials":"会员见证","nav.community":"社区","nav.contact":"联系我们","nav.faq":"常见问题","nav.cta":"立即注册","mobile.cta":"在 Earnlix 注册 →",
+"meta.title":"Earnlix Africa — 掌握数字技能，创造真实收入","meta.description":"首个专注于数字营销、人工智能、交易和电商的非洲社区，由 Earnlix Digital 提供支持。",
+"hero.badge":"非洲社区 · 超过1000名活跃会员",
+"hero.lines":["掌握数字技能。\n创造真实收入。","从理论\n走向行动。","加入非洲第一\n数字社区。"],
+"hero.sub":"首个专注于 Earnlix 联盟营销、人工智能、交易和电商的非洲社区。从理论走向行动。",
+"btn.whatsapp":"加入 WhatsApp 群组","btn.earnlix":"在 Earnlix 注册",
+"hero.stat1":"活跃会员","hero.stat2":"满意度","hero.stat3":"实操性",
+"showreel.eyebrow":"视频介绍","showreel.title":"了解 <span class=\"grad\">Earnlix Africa</span>","showreel.sub":"两段视频，几秒钟内了解社区能为你带来什么。","showreel.label1":"介绍","showreel.label2":"动态设计",
+"about.eyebrow":"使命",
+"about.p1":"我们的使命是让数字商业变得具体且人人可及，服务每一位积极进取的非洲人。没有空洞的承诺——只有经过实战检验的方法。",
+"about.p2":"无论是想获得额外收入，还是彻底转型进入数字领域，我们都会陪伴每位会员从想法走到第一批成果。",
+"about.cta":"免费注册",
+"about.card1.title":"实操培训","about.card1.desc":"循序渐进的指南和教程，可立即应用。杜绝无用的理论。",
+"about.card2.title":"互助与指导","about.card2.desc":"每天有经验丰富的会员陪伴，随时解答你的所有问题。",
+"about.card3.title":"变现与联盟营销","about.card3.desc":"通过 Earnlix Digital 获得持续佣金，把你的人脉变成收入。",
+"how.title":"运作<span class=\"grad\">方式</span>","how.sub":"四个简单步骤，从旁观者变为数字行动者。",
+"how.s1.title":"加入 WhatsApp 群组","how.s1.desc":"免费即时加入社区，获得每日辅导和各类资源。",
+"how.s2.title":"在 Earnlix 注册","how.s2.desc":"免费创建你的 Earnlix Digital 账户，开启你的联盟营销之旅。",
+"how.s3.title":"参加培训课程","how.s3.desc":"交易、电商、人工智能、视频营销——在群组的指导下按自己的节奏学习。",
+"how.s4.title":"创造你的收入","how.s4.desc":"运用所学知识，赚取第一笔佣金，并逐步成长为导师。",
+"services.eyebrow":"WhatsApp 群组","services.title":"群组内容<br><span class=\"grad\">应有尽有</span>","services.sub":"一个结构化的空间，每天都有实用信息在这里流通。",
+"services.i1.title":"直播辅导与问答环节","services.i1.desc":"定期直播环节，帮助你突破瓶颈，在专家的实时指导下加速进步。",
+"services.i2.title":"即用型联盟营销策略","services.i2.desc":"销售话术、优化视觉素材、模板消息——从第一天起有效推广 Earnlix 所需的一切。",
+"services.i3.title":"抢先获取提醒与机会","services.i3.desc":"率先了解新机会、促销活动和数字趋势，抢占先机。",
+"services.i4.title":"互助网络","services.i4.desc":"一个真正由热爱非洲互联网事业的人组成的网络。分享、协作，与理解你抱负的人一起成长。",
+"modules.eyebrow":"课程内容","modules.title":"我们的<span class=\"grad\">培训课程</span>","modules.sub":"专为非洲设计，适配你的水平，注重立即实践。",
+"modules.c1.title":"外汇与加密货币交易","modules.c1.desc":"金融市场入门、风险管理，以及适合初学者和中级学员的策略。","modules.c1.tag":"初级 → 高级",
+"modules.c2.title":"中国进口与电商","modules.c2.desc":"通过阿里巴巴以工厂价采购，在非洲以理想利润转售。","modules.c2.tag":"真实商业",
+"modules.c3.title":"人工智能与效率提升","modules.c3.desc":"ChatGPT、Midjourney、自动化工具。借助AI工具倍增你的效率和收入。","modules.c3.tag":"未来工作方式",
+"modules.c4.title":"TikTok 与 YouTube 营销","modules.c4.desc":"创作爆款内容，积累粉丝群体，并通过视频平台的曝光度实现变现。","modules.c4.tag":"曝光度与收入",
+"modules.c5.title":"Earnlix 联盟营销","modules.c5.desc":"社区的核心。掌握 Earnlix 推荐机制，赚取持续佣金，从非洲开始建立可持续的数字收入。","modules.c5.tag":"持续佣金",
+"testi.title":"他们和你一样从零开始。<br><span class=\"grad\">如今，他们分享自己的故事。</span>","testi.sub":"已经付诸行动并分享自身历程的群组成员。",
+"testi.c1.text":"「八个月前我对交易一无所知。多亏群组每日的辅导，我如今已能自主管理投资组合，并反过来指导新会员。」","testi.c1.role":"阿比让 · 外汇与加密货币交易",
+"testi.c2.text":"「我参加了中国进口相关培训，开设了自己的网店。在群组的持续支持下，不到一个月就完成了首批销售。」","testi.c2.role":"达喀尔 · 进口与电商",
+"testi.c3.text":"「每日的指导让我逐步掌握了 Earnlix 联盟营销。如今我每月都能获得持续佣金。」","testi.c3.role":"杜阿拉 · Earnlix 联盟营销",
+"testi.note":"以上为反映典型会员历程的示例见证。如果你愿意分享自己的真实见证和照片，请与我们联系。",
+"community.eyebrow":"社交网络","community.title":"随时随地<br><span class=\"grad\">加入我们</span>","community.sub":"社区活跃于多个平台，保持联系。",
+"community.wa.name":"VIP WhatsApp 群组","community.wa.desc":"超过1000名会员 · 每日辅导 · 专属策略",
+"community.tt.desc":"技巧分享 · 策略 · 社区幕后花絮",
+"community.fb.desc":"最新动态 · 培训课程 · 会员见证",
+"contact.title":"有具体<span class=\"grad\">问题？</span>","contact.sub":"直接给我们留言——我们会通过 WhatsApp 回复你。",
+"contact.label_name":"姓名","contact.placeholder_name":"你的姓名","contact.label_subject":"主题",
+"contact.opt_general":"一般咨询","contact.opt_training":"培训课程","contact.opt_partnership":"合作伙伴关系","contact.opt_support":"技术支持","contact.opt_other":"其他",
+"contact.label_message":"留言内容","contact.placeholder_message":"在此输入你的留言...","contact.submit":"通过 WhatsApp 发送",
+"contact.wa_greeting":"你好 Earnlix Africa，","contact.wa_name":"姓名","contact.wa_subject":"主题","contact.wa_message":"留言内容",
+"contact.status_direct":"你的消息已准备好，正在跳转至 WhatsApp。","contact.status_copied":"消息已复制！请将其粘贴到刚打开的 WhatsApp 群组中。","contact.status_copy_fallback":"请复制上方消息，并粘贴到刚打开的 WhatsApp 群组中。",
+"faq.title":"常见<br><span class=\"grad\">问题</span>",
+"faq.q1":"如何加入 WhatsApp 群组？","faq.a1":"点击本页面上任意一个「加入 WhatsApp 群组」按钮，即可立即跳转至我们的群组，获取各类资源并参与每日辅导。",
+"faq.q2":"在 Earnlix 注册需要付费吗？","faq.a2":"在 Earnlix Digital 注册是完全免费的。你可以创建账户并开启联盟营销之旅，无需任何前期费用。虽然也有进阶的付费方案可供选择，但入门完全无需强制付费。",
+"faq.q3":"如果我完全是新手，会有人指导我吗？","faq.a3":"当然可以。Earnlix Africa Community 正是为新手设计的。我们的内容从零开始讲解，团队会在群组中及时答疑，直播环节也专为数字领域的新手打造。",
+"cta.title":"准备好行动了吗？","cta.sub":"加入超过1000名会员的行列，每周一起学习、交流，创造你的第一笔数字收入。","cta.note":"免费注册 · 无任何承诺 · 从第一天起全程陪伴",
+"footer.home":"首页","footer.legal":"法律声明","footer.copy":"© 2026 EARNLIX Africa × Earnlix Digital. 保留所有权利。","footer.disclaimer":"效果因每位会员的投入程度而异。"
+}
+};
+
+let currentLang = localStorage.getItem('earnlix_lang') || 'fr';
+
+function applyLanguage(lang){
+  if(!translations[lang]) return;
+  currentLang = lang;
+  localStorage.setItem('earnlix_lang', lang);
+  document.documentElement.lang = lang;
+  document.title = translations[lang]['meta.title'];
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if(metaDesc) metaDesc.setAttribute('content', translations[lang]['meta.description']);
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[lang][key] !== undefined) el.innerHTML = translations[lang][key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-ph');
+    if(translations[lang][key] !== undefined) el.setAttribute('placeholder', translations[lang][key]);
+  });
+  const langCurrent=document.getElementById('lang-current');
+  if(langCurrent) langCurrent.textContent = lang.toUpperCase();
+  document.querySelectorAll('.lang-opt').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
+  /* restart the typewriter cleanly with the new language's lines */
+  if(typeof li!=='undefined'){li=0;ci=0;del=false;if(tw)tw.innerHTML='';}
+}
+
+const langSwitch=document.getElementById('lang-switch');
+const langBtn=document.getElementById('lang-btn');
+langBtn.addEventListener('click',()=>{
+  const o=langSwitch.classList.toggle('on');
+  langBtn.setAttribute('aria-expanded',o);
+});
+document.querySelectorAll('.lang-opt').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    applyLanguage(btn.dataset.lang);
+    langSwitch.classList.remove('on');
+    langBtn.setAttribute('aria-expanded','false');
+  });
+});
+document.addEventListener('click',e=>{
+  if(!langSwitch.contains(e.target)) langSwitch.classList.remove('on');
+});
+
 /* ============================================================
    1. NAVBAR
 ============================================================ */
@@ -868,11 +1192,10 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 /* ============================================================
    2. TYPEWRITER HERO
 ============================================================ */
-const lines=['Maîtrise le Digital.\nGénère des Revenus.','Passe de la Théorie\nà l\'Action.','Rejoins la Communauté\nAfricaine #1.'];
 let li=0,ci=0,del=false;
 const tw=document.getElementById('typewriter');
 function type(){
-  const full=lines[li];
+  const full=translations[currentLang]['hero.lines'][li];
   if(!del){
     ci++;
     tw.innerHTML=full.slice(0,ci).replace('\n','<br>');
@@ -880,7 +1203,7 @@ function type(){
     setTimeout(type,55);
   } else {
     if(ci>0){ci--;tw.innerHTML=full.slice(0,ci).replace('\n','<br>');setTimeout(type,28)}
-    else{del=false;li=(li+1)%lines.length;setTimeout(type,400)}
+    else{del=false;li=(li+1)%translations[currentLang]['hero.lines'].length;setTimeout(type,400)}
   }
 }
 setTimeout(type,600);
@@ -1055,6 +1378,7 @@ observe('.step-card');
 observe('.mod-card');
 observe('.testi-card');
 observe('.com-item');
+observe('.video-card');
 
 /* ============================================================
    6. TILT 3D — modules cards
@@ -1116,24 +1440,26 @@ contactForm.addEventListener('submit',async e=>{
     return;
   }
   const name=document.getElementById('cf-name').value.trim();
-  const subject=document.getElementById('cf-subject').value;
+  const subjectSlug=document.getElementById('cf-subject').value;
   const message=document.getElementById('cf-message').value.trim();
-  const text=`Bonjour Earnlix Africa,\n\nNom: ${name}\nSujet: ${subject}\nMessage: ${message}`;
+  const t=k=>translations[currentLang][k];
+  const subjectLabel=document.getElementById('cf-subject').selectedOptions[0].textContent;
+  const text=`${t('contact.wa_greeting')}\n\n${t('contact.wa_name')}: ${name}\n${t('contact.wa_subject')}: ${subjectLabel}\n${t('contact.wa_message')}: ${message}`;
 
   if(typeof gtag==='function'){
-    gtag('event','generate_lead',{method:CONTACT_WHATSAPP_NUMBER?'whatsapp_direct':'whatsapp_group',subject});
+    gtag('event','generate_lead',{method:CONTACT_WHATSAPP_NUMBER?'whatsapp_direct':'whatsapp_group',subject:subjectSlug});
   }
 
   if(CONTACT_WHATSAPP_NUMBER){
     window.open(`https://wa.me/${CONTACT_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`,'_blank','noopener');
-    contactStatus.textContent='Ton message est prêt, tu es redirigé vers WhatsApp.';
+    contactStatus.textContent=t('contact.status_direct');
     contactStatus.className='ok';
   } else {
     try{
       await navigator.clipboard.writeText(text);
-      contactStatus.textContent='Message copié ! Colle-le dans le groupe WhatsApp qui vient de s\'ouvrir.';
+      contactStatus.textContent=t('contact.status_copied');
     }catch{
-      contactStatus.textContent='Copie ton message ci-dessus et colle-le dans le groupe WhatsApp qui vient de s\'ouvrir.';
+      contactStatus.textContent=t('contact.status_copy_fallback');
     }
     contactStatus.className='ok';
     window.open('https://chat.whatsapp.com/L5J49QIKF7kJudUsFpZCKu','_blank','noopener');
@@ -1168,6 +1494,11 @@ document.addEventListener('click',e=>{
     gtag('event','social_click',{platform:'facebook',link_location:location});
   }
 });
+
+/* ============================================================
+   12. APPLY SAVED / DEFAULT LANGUAGE
+============================================================ */
+applyLanguage(currentLang);
 
 /* reduced motion */
 if(matchMedia('(prefers-reduced-motion:reduce)').matches){
