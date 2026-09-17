@@ -1120,6 +1120,10 @@ contactForm.addEventListener('submit',async e=>{
   const message=document.getElementById('cf-message').value.trim();
   const text=`Bonjour Earnlix Africa,\n\nNom: ${name}\nSujet: ${subject}\nMessage: ${message}`;
 
+  if(typeof gtag==='function'){
+    gtag('event','generate_lead',{method:CONTACT_WHATSAPP_NUMBER?'whatsapp_direct':'whatsapp_group',subject});
+  }
+
   if(CONTACT_WHATSAPP_NUMBER){
     window.open(`https://wa.me/${CONTACT_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`,'_blank','noopener');
     contactStatus.textContent='Ton message est prêt, tu es redirigé vers WhatsApp.';
@@ -1143,6 +1147,27 @@ contactForm.addEventListener('submit',async e=>{
 const backTop=document.getElementById('back-top');
 window.addEventListener('scroll',()=>backTop.classList.toggle('show',scrollY>700),{passive:true});
 backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ============================================================
+   11. ANALYTICS EVENTS — WhatsApp / Earnlix / réseaux sociaux
+============================================================ */
+document.addEventListener('click',e=>{
+  if(typeof gtag!=='function')return;
+  const a=e.target.closest('a[href]');
+  if(!a)return;
+  const href=a.href;
+  const container=a.closest('section, nav, footer, #float-wa');
+  const location=container?(container.id||container.tagName.toLowerCase()):'unknown';
+  if(href.includes('chat.whatsapp.com')){
+    gtag('event','whatsapp_click',{link_location:location});
+  } else if(href.includes('earnlixdigital.com/register')){
+    gtag('event','earnlix_signup_click',{link_location:location});
+  } else if(href.includes('tiktok.com')){
+    gtag('event','social_click',{platform:'tiktok',link_location:location});
+  } else if(href.includes('facebook.com')){
+    gtag('event','social_click',{platform:'facebook',link_location:location});
+  }
+});
 
 /* reduced motion */
 if(matchMedia('(prefers-reduced-motion:reduce)').matches){
